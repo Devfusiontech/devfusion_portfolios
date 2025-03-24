@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Portfolio</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="HTML5 website template">
+  <meta name="keywords" content="global, template, html, sass, jquery">
+  <meta name="author" content="Bucky Maler">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    /* General Styles */
+    .about {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+
+    .about--banner h2 {
+      text-align: center;
+
+      font-size: 2.5rem;
+      font-weight: 900;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .about--banner a p {
+      position: relative;
+      color: #fff;
+      position: relative;
+      bottom: 8px;
+      font-size: 1rem;
+      -webkit-transition: bottom .2s ease-in-out, left .2s ease-in-out;
+      transition: bottom .2s ease-in-out, left .2s ease-in-out
+    }
+
+    .about--banner a {
+      color: #fff
+    }
+
+
+
+    .about--banner img {
+      max-width: 100%;
+      height: auto;
+      margin-top: 20px;
+      margin-right: -10px;
+    }
+
+    .about--options {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .about--options h2 {
+      position: relative;
+
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      -webkit-transition: bottom .2s ease-in-out, left .2s ease-in-out;
+      transition: bottom .2s ease-in-out, left .2s ease-in-out
+    }
+
+    .about--options h3 {
+      text-transform: uppercase;
+      transition: bottom .2s ease-in-out, left .2s ease-in-out, ;
+    }
+
+    .about--options a {
+      flex: 1 1 calc(77.333% - 0px);
+      max-width: fit-content;
+      height: auto;
+      text-align: center;
+
+      /* background-color: #f4f4f4; */
+      border-radius: 10px;
+      text-decoration: none;
+      color: #f4f4f4;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .about--options a:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .about--options h3 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    .about--options p {
+      font-size: 1rem;
+      line-height: 1.5;
+      text-transform: unset;
+    }
+
+    /* Media query for screens with a maximum width of 1180px */
+    @media (max-width: 1180px) {
+      .about {
+        max-width: 100%;
+      }
+
+      .about--banner {
+        height: auto;
+      }
+
+      .about--banner h2 {
+        font-size: 48px;
+        margin-top: 20px;
+      }
+
+      .about--banner h2::before {
+        top: 40px;
+        left: 200px;
+      }
+
+      .about--banner h2::after {
+        top: 200px;
+        left: 200px;
+      }
+    }
+
+    /* Media query for screens with a maximum width of 767px */
+    @media (max-width: 667px) {
+      .about {
+        height: auto;
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0px;
+      }
+
+      .about--banner {
+        height: 205px;
+      }
+
+      .about--banner h2 {
+        font-size: 28px;
+        margin-top: 10px;
+      }
+
+      .about--banner h2::before {
+        top: 28px;
+        left: 148px;
+      }
+
+      .about--banner h2::after {
+        top: 163px;
+        left: 143px;
+      }
+
+      .about--banner a p {
+        position: relative;
+
+        color: #fff;
+        position: relative;
+        bottom: 18px;
+        font-size: 12px;
+        text-transform: uppercase;
+        -webkit-transition: bottom .2s ease-in-out, left .2s ease-in-out;
+        transition: bottom .2s ease-in-out, left .2s ease-in-out
+      }
+
+    }
+
+
+    @media (max-width: 667px) {
+      .about--options {
+        flex-direction: column;
+        /* Stack children vertically */
+        align-items: flex-start;
+        /* Align items to the left */
+        gap: 20px;
+        /* Increase gap for better spacing */
+      }
+
+      .about--options a {
+        flex: 1 1 100%;
+        /* Full width for each anchor */
+        max-width: 100%;
+        /* Ensure full width */
+        text-align: left;
+        /* Align text to the left */
+        box-sizing: border-box;
+        /* Include padding in width calculation */
+      }
+
+      .about--options h2 {
+        font-size: 1.3rem;
+        /* Slightly reduce font size for h2 */
+      }
+
+      .about--options h3 {
+        font-size: 1.2rem;
+        /* Slightly reduce font size for h3 */
+        margin-bottom: 5px;
+        /* Reduce margin for better spacing */
+      }
+
+      .about--options p {
+        font-size: 10px;
+        /* Slightly reduce font size for paragraphs */
+        margin-bottom: 0;
+        /* Remove margin to prevent overflow */
+      }
+    }
+
+    /* Media query for screens with a maximum width of 600px */
+    @media (max-width: 600px) {
+      .about--banner {
+        height: auto;
+        margin-top: -25px;
+      }
+
+      .about--banner h2 {
+        font-size: 28px;
+        margin-top: 0;
+      }
+
+      .about--banner h2::before {
+        top: 20px;
+        left: 120px;
+      }
+
+      .about--banner h2::after {
+        top: 150px;
+        left: 120px;
+      }
+
+      .about--options h2 {
+        font-size: 18px;
+      }
+
+      .about--options h3 {
+        font-size: 16px;
+      }
+
+      .about--options p {
+        font-size: 12px;
+      }
+    }
+
+    body {
+      position: relative;
+      background-image: url(../website/assets/img/main.jpeg);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center center;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5));
+      opacity: 0.9;
+      z-index: -1;
+    }
+
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 20px;
+      flex-direction: column;
+    }
+
+    .social-links a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: #fff;
+      font-size: 19px;
+      padding: 1px 8px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .social-links a:hover {
+      background-color: #1661c7;
+      color: #fff;
+      transform: translateY(-3px);
+    }
+
+    .social-links a i {
+      font-size: 1.2rem;
+      margin-right: 8px;
+    }
+
+    .social-links a span {
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    /* Media Queries */
+    @media (max-width: 1024px) {
+      .about--banner h2 {
+        font-size: 3rem;
+      }
+
+      .about--options a {
+        flex: 1 1 calc(50% - 20px);
+      }
+    }
+
+    @media (max-width: 767px) {
+      .about--banner h2 {
+        font-size: 1.75rem;
+      }
+
+      .about--options {
+        flex-direction: column;
+      }
+
+
+    }
+
+    @media (max-width: 480px) {
+      .about--banner h2 {
+        font-size: 1.5rem;
+      }
+
+      .about--banner a {
+        font-size: 12px;
+        padding: 8px 10px;
+      }
+
+      .about--options h3 {
+        font-size: 1.25rem;
+      }
+
+      .about--options p {
+        font-size: 12px;
+      }
+
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <!-- notification for small viewports and landscape oriented smartphones -->
+  <div class="device-notification">
+    <a class="device-notification--logo" href="#0">
+      <img src="assets/img/logo.png">
+      <p>Talal Yousaf Swati</p>
+    </a>
+  </div>
+
+  <div class="perspective effect-rotate-left">
+    <div class="container">
+      <div class="outer-nav--return"></div>
+      <div id="viewport" class="l-viewport">
+        <div class="l-wrapper">
+          <header class="header">
+            <a class="header--logo" href="#0">
+              <img src="assets/img/logo.png" alt="Global">
+              <p>Talal Yousaf Swati</p>
+            </a>
+            <button class="header--cta cta" ><a href="https://wa.me/923379746734" style="color:white;">Lets Connect</a></button>
+            <div class="header--nav-toggle">
+              <span></span>
+            </div>
+          </header>
+          <nav class="l-side-nav">
+            <ul class="side-nav">
+              <li class="is-active"><span>Home</span></li>
+              <li><span>Works</span></li>
+              <li><span>About</span></li>
+              <li><span>Contact</span></li>
+              <li><span>Technical Skills</span></li>
+            </ul>
+          </nav>
+          <ul class="l-main-content main-content">
+            <li class="l-section section section--is-active">
+              <div class="intro">
+                <div class="intro--banner">
+                  <h1 style="font-size: xx-large;"> Talal Yousaf Swati</h1>
+                    <h2>DevOps Engineer</h2>
+                  <button class="cta"><a href="https://wa.me/923379746734" style="color:white;">Lets connect</a>
+                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                      xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 150 118"
+                      style="enable-background:new 0 0 150 118;" xml:space="preserve">
+                      <g transform="translate(0.000000,118.000000) scale(0.100000,-0.100000)">
+                        <path
+                          d="M870,1167c-34-17-55-57-46-90c3-15,81-100,194-211l187-185l-565-1c-431,0-571-3-590-13c-55-28-64-94-18-137c21-20,33-20,597-20h575l-192-193C800,103,794,94,849,39c20-20,39-29,61-29c28,0,63,30,298,262c147,144,272,271,279,282c30,51,23,60-219,304C947,1180,926,1196,870,1167z" />
+                      </g>
+                    </svg>
+                    <span class="btn-background"></span>
+                  </button>
+                </div>
+                <div class="intro--options">
+                  <a href="#0">
+                    <h3> Pakistani</h3>
+                    <h3>Lahore, Pakistan</h3>
+                    <h3>talalswatidevops@gmail.com</h3>
+                  </a>
+                  <div class="social-links">
+                    <a href="https://www.upwork.com/freelancers/~YOUR_UPWORK_PROFILE" target="_blank">
+                      <i class="fab fa-upwork"></i>
+                      <span>Upwork</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/talalyousafswati?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                      target="_blank">
+                      <i class="fab fa-linkedin"></i>
+                      <span>LinkedIn</span>
+                    </a>
+                    <a href="https://www.instagram.com/talal.swati?igsh=aWo0eWxqYzBreXJv" target="_blank">
+                      <i class="fab fa-instagram"></i>
+                      <span>Instagram</span>
+                    </a>
+                  </div>
+                  <div class="social-links">
+                    <a href="https://www.facebook.com/share/157DZczKVt/" target="_blank">
+                      <i class="fab fa-facebook"></i>
+                      <span>Facebook</span>
+                    </a>
+                    <a href="talalswatidevops@gmail.com">
+                      <i class="fas fa-envelope"></i>
+                      <span>Email</span>
+                    </a>
+                    <a><i class="fas fa-phone icon"></i> (+92) 3379746734</a>
+                  </div>
+
+                </div>
+              </div>
+            </li>
+            <li class="l-section section">
+              <div class="work">
+                <h2>Work Experience</h2>
+                <div class="work--lockup">
+                  <ul class="slider">
+                    <li class="slider--item slider--item-center">
+                      <a href="#0">
+                        <div class="slider--item-image1">
+                          <a href="https://www.aetostechnology.com/">
+                            <img src="assets/img/Dev.Ops.png" alt="Talal Yousaf Swati">
+                          </a>
+                        </div>
+                        <p class="slider--item-title"><a href="https://www.aetostechnology.com/">DevOps Engineer - Aetos
+                            Technologies</a></p>
+                        <div class="slider--item-details">
+                          <p>
+                            Managing cloud infrastructure on AWS, Azure, and GCP.<br>
+                            Deploying and maintaining Odoo servers.<br>
+                            Optimizing IIS, Azure Sentinel, and CI/CD pipelines.<br>
+                          </p>
+                        </div>
+                        <!-- <p class="slider--item-description"> <ul s>
+                        <li>Managing cloud infrastructure on AWS, Azure, and GCP.</li>
+                        <li>Deploying and maintaining Odoo servers.</li>
+                        <li>Optimizing IIS, Azure Sentinel, and CI/CD pipelines.</li>
+                    </ul></p> -->
+                      </a>
+                    </li>
+
+                    <li class="slider--item slider--item-right">
+                      <a href="#0">
+                        <div class="slider--item-image" style="width: 300px;height:200px;">
+                          <a href="https://axiomworld.net/">
+                            <img src="assets/img/axiom.png" alt="Axiom World">
+                          </a>
+                        </div>
+                        <p class="slider--item-title"><a href="https://axiomworld.net/">DevOps Engineer - Axiom
+                            World</a></p>
+                        <div class="slider--item-details">
+                          <p class="slider--item-description">Managed cloud infrastructure, CI/CD pipelines, and
+                            automated deployments.</p>
+                        </div>
+                      </a>
+                    </li>
+                  </ul>
+                  <div class="slider--prev">
+                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                      xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 150 118"
+                      style="enable-background:new 0 0 150 118;" xml:space="preserve">
+                      <g transform="translate(0.000000,118.000000) scale(0.100000,-0.100000)">
+                        <path d="M561,1169C525,1155,10,640,3,612c-3-13,1-36,8-52c8-15,134-145,281-289C527,41,562,10,590,10c22,0,41,9,61,29
+                    c55,55,49,64-163,278L296,510h575c564,0,576,0,597,20c46,43,37,109-18,137c-19,10-159,13-590,13l-565,1l182,180
+                    c101,99,187,188,193,199c16,30,12,57-12,84C631,1174,595,1183,561,1169z" />
+                      </g>
+                    </svg>
+                  </div>
+                  <div class="slider--next">
+                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                      xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 150 118"
+                      style="enable-background:new 0 0 150 118;" xml:space="preserve">
+                      <g transform="translate(0.000000,118.000000) scale(0.100000,-0.100000)">
+                        <path
+                          d="M870,1167c-34-17-55-57-46-90c3-15,81-100,194-211l187-185l-565-1c-431,0-571-3-590-13c-55-28-64-94-18-137c21-20,33-20,597-20h575l-192-193C800,103,794,94,849,39c20-20,39-29,61-29c28,0,63,30,298,262c147,144,272,271,279,282c30,51,23,60-219,304C947,1180,926,1196,870,1167z" />
+                      </g>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="l-section section">
+              <div class="about">
+                <div class="about--banner">
+                  <h2>Education & Training</h2>
+
+                  <a href="#0">
+                    <p>Bachelor's in Software Engineering</p>
+                    <p><i class="fas fa-university icon"></i> CUI Islamabad, Abbottabad Campus [2017 – 2021]</p>
+                    <p><i class="fas fa-globe icon"></i> <a href="https://www.cuiatd.edu.pk/">www.cuiatd.edu.pk</a></p>
+                  </a>
+
+                </div>
+                <div class="about--options">
+                  <div>
+                    <h2>Language Skills</h2>
+                    <p>Mother Tongue(s): <br>Pushto </p>
+                  </div>
+                  <a href="#0">
+                    <h3>English</h3>
+                    <p>
+                      Listening B2 | Reading B2 | Writting B2<br>
+                      Spoken Production B2 | Spoken Interaction B2
+                    </p>
+                  </a>
+                  <a href="#0">
+                    <h3>Urdu</h3>
+                    <p>
+                      Listening C2 | Reading C2 | Writting C2<br>
+                      Spoken Production C1 | Spoken Interaction C2
+                    </p>
+                  </a>
+                  <p style="color: #fff;">Levels: A1 and A2: Basic user; B1 and B2: Independent user; C1 and C2:
+                    Proficient user</p>
+                </div>
+              </div>
+            </li>
+            <li class="l-section section">
+              <div class="contact">
+                <div class="contact--lockup">
+                  <div class="modal">
+                    <div class="modal--information">
+                      <p>Lahore, Pakistan</p>
+                      <a href="mailto:talalswatidevops@gmail.com">talalswatidevops@gmail.com</a>
+                      <a href="tel:(+92) 3379746734">(+92) 3379746734</a>
+                    </div>
+                    <ul class="modal--options">
+                      <li><a href="#0">Lahore,Pakistan</a></li>
+                      <li><a href="https://wa.me/923379746734" style="color:white;">Lets connect</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="l-section section">
+              <div class="hire">
+                <h2>Technical Skills</h2>
+                <!-- checkout formspree.io for easy form setup -->
+                <form class="work-request">
+                  <div class="work-request--options">
+                    <span class="options-a">
+                      <input id="opt-1" type="checkbox" value="app design">
+                      <label for="opt-1">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                          xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 150 111"
+                          style="enable-background:new 0 0 150 111;" xml:space="preserve">
+                          <g transform="translate(0.000000,111.000000) scale(0.100000,-0.100000)">
+                            <path
+                              d="M950,705L555,310L360,505C253,612,160,700,155,700c-6,0-44-34-85-75l-75-75l278-278L550-5l475,475c261,261,475,480,475,485c0,13-132,145-145,145C1349,1100,1167,922,950,705z" />
+                          </g>
+                        </svg>
+                        Linux Server / Ubuntu / AWS
+                      </label>
+                      <input id="opt-2" type="checkbox" value="graphic design">
+                      <label for="opt-2">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                          xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 150 111"
+                          style="enable-background:new 0 0 150 111;" xml:space="preserve">
+                          <g transform="translate(0.000000,111.000000) scale(0.100000,-0.100000)">
+                            <path
+                              d="M950,705L555,310L360,505C253,612,160,700,155,700c-6,0-44-34-85-75l-75-75l278-278L550-5l475,475c261,261,475,480,475,485c0,13-132,145-145,145C1349,1100,1167,922,950,705z" />
+                          </g>
+                        </svg>
+                        Docker / Jenkins / Terraform
+                      </label>
+                      <input id="opt-3" type="checkbox" value="motion design">
+                      <label for="opt-3">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                          xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 150 111"
+                          style="enable-background:new 0 0 150 111;" xml:space="preserve">
+                          <g transform="translate(0.000000,111.000000) scale(0.100000,-0.100000)">
+                            <path
+                              d="M950,705L555,310L360,505C253,612,160,700,155,700c-6,0-44-34-85-75l-75-75l278-278L550-5l475,475c261,261,475,480,475,485c0,13-132,145-145,145C1349,1100,1167,922,950,705z" />
+                          </g>
+                        </svg>
+                        AWS, GCP, Digital Ocean, Azure
+                      </label>
+                    </span>
+                    <span class="options-b">
+                      <input id="opt-4" type="checkbox" value="ux design">
+                      <label for="opt-4">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                          xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 150 111"
+                          style="enable-background:new 0 0 150 111;" xml:space="preserve">
+                          <g transform="translate(0.000000,111.000000) scale(0.100000,-0.100000)">
+                            <path
+                              d="M950,705L555,310L360,505C253,612,160,700,155,700c-6,0-44-34-85-75l-75-75l278-278L550-5l475,475c261,261,475,480,475,485c0,13-132,145-145,145C1349,1100,1167,922,950,705z" />
+                          </g>
+                        </svg>
+                        Web Servers: IIS, Apache, NGINX
+                      </label>
+                      <input id="opt-5" type="checkbox" value="webdesign">
+                      <label for="opt-5">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                          xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 150 111"
+                          style="enable-background:new 0 0 150 111;" xml:space="preserve">
+                          <g transform="translate(0.000000,111.000000) scale(0.100000,-0.100000)">
+                            <path
+                              d="M950,705L555,310L360,505C253,612,160,700,155,700c-6,0-44-34-85-75l-75-75l278-278L550-5l475,475c261,261,475,480,475,485c0,13-132,145-145,145C1349,1100,1167,922,950,705z" />
+                          </g>
+                        </svg>
+                        Odoo Database & System Management
+                      </label>
+                      <input id="opt-6" type="checkbox" value="marketing">
+                      <label for="opt-6">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                          xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 150 111"
+                          style="enable-background:new 0 0 150 111;" xml:space="preserve">
+                          <g transform="translate(0.000000,111.000000) scale(0.100000,-0.100000)">
+                            <path
+                              d="M950,705L555,310L360,505C253,612,160,700,155,700c-6,0-44-34-85-75l-75-75l278-278L550-5l475,475c261,261,475,480,475,485c0,13-132,145-145,145C1349,1100,1167,922,950,705z" />
+                          </g>
+                        </svg>
+                        Security & Zero Trust Implementation
+                      </label>
+                    </span>
+                  </div>
+
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <ul class="outer-nav">
+      <li class="is-active">Home</li>
+      <li>Works</li>
+      <li>About</li>
+      <li>Contact</li>
+      <li>Technical Skills</li>
+    </ul>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery-2.2.4.min.js"><\/script>')</script>
+  <script src="assets/js/functions-min.js"></script>
+</body>
+
+</html>
