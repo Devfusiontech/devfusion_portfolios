@@ -11,15 +11,21 @@
   <meta name="author" content="Bucky Maler">
   <link rel="stylesheet" href="assets/css/main.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Favicon Setup (Corrected & Optimized) -->
+  <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon"> <!-- Standard .ico fallback -->
+  <link rel="icon" href="assets/img/test.png" type="image/svg+xml"> <!-- Recommended scalable version -->
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png"> <!-- For iOS devices (180×180px) -->
   <style>
-    .header--logo img{border: 0; width:50px}
-    .about{position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;width:100%;max-width:1200px;margin:0 auto;padding:20px;}.about--banner h2{text-align:center;font-size:2.5rem;font-weight:900;line-height:1.2;margin-bottom:20px;}.about--banner a p{position:relative;color:#fff;bottom:-8px;font-size:1rem;transition:bottom .2s ease-in-out,left .2s ease-in-out;-webkit-transition:bottom .2s ease-in-out,left .2s ease-in-out;}.about--banner a{color:#fff;}.about--banner img{max-width:100%;height:auto;margin-top:20px;margin-right:-10px;}.about--options{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;margin-top:10px;}.about--options h2{position:relative;font-size:1.5rem;text-transform:uppercase;transition:bottom .2s ease-in-out,left .2s ease-in-out;-webkit-transition:bottom .2s ease-in-out,left .2s ease-in-out;}.about--options h3{text-transform:uppercase;transition:bottom .2s ease-in-out,left .2s ease-in-out;}.about--options a{flex:1 1 calc(77.333% - 0px);max-width:fit-content;height:auto;text-align:center;border-radius:10px;text-decoration:none;color:#f4f4f4;transition:transform .3s ease,box-shadow .3s ease;}.about--options a:hover{transform:translateY(-10px);box-shadow:0 10px 20px rgba(0,0,0,.1);}.about--options h3{font-size:1.5rem;margin-bottom:10px;}.about--options p{font-size:1rem;line-height:1.5;text-transform:unset;}
+    .intro--banner h1{font-size: xx-large;font-weight: 700;}
+    .about{position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;width:100%;max-width:1200px;margin:0 auto;padding:20px;}.about--banner h2{text-align:center;font-size:2.5rem;font-weight:900;line-height:1.2;margin-bottom:20px;}.about--banner a p{position:relative;color:#fff;bottom:-8px;font-size:1rem;transition:bottom .2s ease-in-out,left .2s ease-in-out;-webkit-transition:bottom .2s ease-in-out,left .2s ease-in-out;}.about--banner a{color:#fff;}.about--banner img{max-width:100%;height:auto;margin-top:20px;margin-right:-10px;}.about--options{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px;margin-top:10px;}.about--options h2{position:relative;font-size:1.5rem;text-transform:uppercase;transition:bottom .2s ease-in-out,left .2s ease-in-out;-webkit-transition:bottom .2s ease-in-out,left .2s ease-in-out;}.about--options h3{text-transform:uppercase;transition:bottom .2s ease-in-out,left .2s ease-in-out;}.about--options a{flex:1 1 calc(77.333% - 0px);max-width:fit-content;height:auto;text-align:center;border-radius:10px;text-decoration:none;color:#f4f4f4;transition:transform .3s ease,box-shadow .3s ease;}.about--options a:hover{transform:translateY(-10px);box-shadow:0 10px 20px rgba(0,0,0,.1);}.about--options h3{font-size:1.5rem;margin-bottom:10px;}.about--options p{font-size:1rem;line-height:1.5;text-transform:unset;}
     @media (max-width:1180px){.about{max-width:100%;}.about--banner{height:auto;}.about--banner h2{font-size:48px;margin-top:20px;}.about--banner h2::before{top:40px;left:200px;}.about--banner h2::after{top:200px;left:200px;}}
     @media (max-width:1024px){.about--banner h2{font-size:3rem;}.about--options a{flex:1 1 calc(50% - 20px);}}
     @media (max-width:767px){.about--banner h2{font-size:1.75rem;}.about--options{flex-direction:column;}}
     @media (max-width:667px){.about{height:auto;width:100%;max-width:1200px;margin:0 auto;padding:0;}.about--banner{height:205px;}.about--banner h2{font-size:28px;margin-top:10px;}.about--banner h2::before{top:28px;left:148px;}.about--banner h2::after{top:163px;left:143px;}.about--banner a p{color:#fff;bottom:18px;font-size:12px;text-transform:uppercase;transition:bottom .2s ease-in-out,left .2s ease-in-out;-webkit-transition:bottom .2s ease-in-out,left .2s ease-in-out;}.about--options{flex-direction:column;align-items:flex-start;gap:20px;}.about--options a{flex:1 1 100%;max-width:100%;text-align:left;box-sizing:border-box;}.about--options h2{font-size:1.3rem;}.about--options h3{font-size:1.2rem;margin-bottom:5px;}.about--options p{font-size:10px;margin-bottom:0;}}
-    @media (max-width:600px){.about--banner{height:auto;margin-top:-25px;}.about--banner h2{font-size:28px;margin-top:0;}.about--banner h2::before{top:20px;left:120px;}.about--banner h2::after{top:150px;left:120px;}.about--options h2{font-size:18px;}.about--options h3{font-size:16px;}.about--options p{font-size:12px;}}
+    @media (max-width:600px){.about--banner{height:auto;margin-top:-36px;}.about--banner h2{font-size:28px;margin-top:0;}.about--banner h2::before{top:20px;left:120px;}.about--banner h2::after{top:150px;left:120px;}.about--options h2{font-size:18px;}.about--options h3{font-size:16px;}.about--options p{font-size:12px;}}
     @media (max-width:480px){.about--banner h2{font-size:1.5rem;}.about--banner a{font-size:12px;padding:8px 10px;}.about--options h3{font-size:1.25rem;}.about--options p{font-size:12px;}}
+    @media(max-width:767px){.hire h2{margin:0px 0px 0px 11px;font-size:1.8rem;text-align:left;}.about--options{margin-top:108px;gap:0px;text-transform:unset;}.about--banner a p{bottom:0px;text-transform:unset;}.about--banner h2{text-align:left;font-size:23px;}.about--banner a{padding:0;margin:0;text-transform:unset;}.about--options h3{font-size:17px;}.about--options h2{font-size:23px;}.work--lockup .slider--next svg{width:13px;}.work--lockup .slider--prev svg{width:13px;}.work--lockup .slider--next{width:31px;height:31px;}.work--lockup .slider--prev{width:31px;height:31px;}.skills-container{margin-top:4px;}.category-title{padding:8px 13px;font-size:14px;font-weight:300;}.skills-columns-container{gap:2px;}.work h2{font-size:1.8rem;}.slider--item-image1 img{height:46px;}.work--lockup .slider--item-center .slider--item-image{width:190px;}.work--lockup .slider--item-center a{font-size:14px;}.work--lockup .slider--item-center p{font-size:12px;}.work--lockup .slider--next{top:77px;}.work--lockup .slider--prev{top:77px;}.into--banner h1{font:size 29px !important;}}
+    
   </style>
 
 </head>
@@ -29,7 +35,7 @@
   <!-- notification for small viewports and landscape oriented smartphones -->
   <div class="device-notification">
     <a class="device-notification--logo" href="#0">
-      <img src="assets/img/logo.webp">
+      <img src="assets/img/logo.png">
       <p>Talal Yousaf Swati</p>
     </a>
   </div>
@@ -41,10 +47,10 @@
         <div class="l-wrapper">
           <header class="header">
             <a class="header--logo" href="#0">
-              <img src="assets/img/logo.webp" >
-              <p>Talal Yousaf Swati</p>
+              
+              <p>DevOps Portfolio</p>
             </a>
-            <button class="header--cta cta"><a href="https://wa.me/923379746734" style="color:white;">Lets
+            <button class="header--cta cta"><a href="https://wa.me/923379746734" target="_blank" style="color:white;">Lets
                 Connect</a></button>
             <div class="header--nav-toggle">
               <span></span>
@@ -53,19 +59,19 @@
           <nav class="l-side-nav">
             <ul class="side-nav">
               <li class="is-active"><span>Home</span></li>
-              <li><span>Works</span></li>
+              <li><span>Work <span>Experience</span></span></li>
               <li><span>About</span></li>
               <li><span>Contact</span></li>
-              <li><span>Technical Skills</span></li>
+              <li><span>Technical <span>Skills</span></span></li>
             </ul>
           </nav>
           <ul class="l-main-content main-content">
             <li class="l-section section section--is-active">
               <div class="intro">
                 <div class="intro--banner">
-                  <h1 style="font-size: xx-large;"> Talal Yousaf Swati</h1>
+                  <h1 > Talal Yousaf Swati</h1>
                   <h2>DevOps Engineer</h2>
-                  <button class="cta"><a href="https://wa.me/923379746734" style="color:white;">Lets connect</a>
+                  <button class="cta"><a href="https://wa.me/923379746734"target="_blank" style="color:white;">Lets connect</a>
                     <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                       xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 150 118"
                       style="enable-background:new 0 0 150 118;" xml:space="preserve">
@@ -103,11 +109,12 @@
                       <i class="fab fa-facebook"></i>
                       <span>Facebook</span>
                     </a>
-                    <a href="talalswatidevops@gmail.com">
+                    <a href="mailto:talalswatidevops@gmail.com?subject=Portfolio Inquiry&body=Hello, I would like to inquire about your portfolio."target="_blank">
                       <i class="fas fa-envelope"></i>
                       <span>Email</span>
                     </a>
-                    <a><i class="fas fa-phone icon"></i> (+92) 3379746734</a>
+                    <a href="https://wa.me/923379746734" target="_blank">
+                      <i class="fas fa-phone icon"></i> (+92) 3379746734</a>
                   </div>
 
                 </div>
@@ -121,11 +128,11 @@
                     <li class="slider--item slider--item-center">
                       <a href="#0">
                         <div class="slider--item-image1">
-                          <a href="https://www.aetostechnology.com/">
+                          <a href="https://www.aetostechnology.com/" target="_blank" rel="noopener noreferrer">
                             <img src="assets/img/Dev.Ops.png" alt="Talal Yousaf Swati">
                           </a>
                         </div>
-                        <p class="slider--item-title"><a href="https://www.aetostechnology.com/">DevOps Engineer - Aetos
+                        <p class="slider--item-title"><a href="https://www.aetostechnology.com/" target="_blank" rel="noopener noreferrer">DevOps Engineer - Aetos
                             Technologies</a></p>
                         <div class="slider--item-details">
                           <p>
@@ -145,11 +152,11 @@
                     <li class="slider--item slider--item-right">
                       <a href="#0">
                         <div class="slider--item-image">
-                          <a href="https://axiomworld.net/">
+                          <a href="https://axiomworld.net/" target="_blank" rel="noopener noreferrer">
                             <img src="assets/img/axiom.png" alt="Axiom World">
                           </a>
                         </div>
-                        <p class="slider--item-title"><a href="https://axiomworld.net/">DevOps Engineer - Axiom
+                        <p class="slider--item-title"><a href="https://axiomworld.net/" target="_blank" rel="noopener noreferrer">DevOps Engineer - Axiom
                             World</a></p>
                         <div class="slider--item-details">
                           <p class="slider--item-description">Managed cloud infrastructure, CI/CD pipelines, and
@@ -213,8 +220,6 @@
                       Spoken Production C1 | Spoken Interaction C2
                     </p>
                   </a>
-                  <p style="color: #fff;">Levels: A1 and A2: Basic user; B1 and B2: Independent user; C1 and C2:
-                    Proficient user</p>
                 </div>
               </div>
             </li>
@@ -229,7 +234,7 @@
                     </div>
                     <ul class="modal--options">
                       <li><a href="#0">Lahore,Pakistan</a></li>
-                      <li><a href="https://wa.me/923379746734" style="color:white;">Lets connect</a></li>
+                      <li><a href="https://wa.me/923379746734"target="_blank" style="color:white;">Lets connect</a></li>
                     </ul>
                   </div>
                 </div>
@@ -239,20 +244,17 @@
               <div class="hire">
                 <h2>Technical Skills</h2>
                 <div class="skills-container">
+                  <!-- Two columns for skills -->
                   <div class="skills-columns-container">
                     <!-- First Column -->
                     <div class="skills-column">
                       <ul class="skills-main-list">
                         <li class="skill-category">
-                          <div class="category-title">Cloud & Infrastructure Management</div>
+                          <div class="category-title">Soft Skills</div>
                           <ul class="skills-sub-list">
-                            <li>AWS (EC2, IAM, S3, etc.)</li>
-                            <li>Azure</li>
-                            <li>Google Cloud Platform (GCP)</li>
-                            <li>Digital Ocean</li>
-                            <li>Hetzner</li>
-                            <li>Contabo</li>
-                            <li>IIS server deployment & management</li>
+                            <li>Collaboration with engineers</li>
+                            <li>Problem-solving and troubleshooting</li>
+                            <li>Communication (English B2, Urdu C2)</li>
                           </ul>
                         </li>
                         <li class="skill-category">
@@ -266,6 +268,38 @@
                           </ul>
                         </li>
                         <li class="skill-category">
+                          <div class="category-title">Programming & Scripting</div>
+                          <ul class="skills-sub-list">
+                            <li>Shell Scripting (for automation & server management)</li>
+                          </ul>
+                        </li>
+                        <li class="skill-category">
+                          <div class="category-title">Cloud & Infrastructure Management</div>
+                          <ul class="skills-sub-list">
+                            <li>AWS (EC2, IAM, S3, etc.)</li>
+                            <li>Azure</li>
+                            <li>Google Cloud Platform (GCP)</li>
+                            <li>Digital Ocean</li>
+                            <li>Hetzner</li>
+                            <li>Contabo</li>
+                            <li>IIS server deployment & management</li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </div>
+            
+                    <!-- Second Column -->
+                    <div class="skills-column">
+                      <ul class="skills-main-list">
+                        <li class="skill-category">
+                          <div class="category-title">Tech Fusion</div>
+                          <ul class="skills-sub-list">
+                            <li>Cloud-Native Security</li>
+                            <li>Infrastructure Automation</li>
+                            <li>Cost Optimization in Cloud</li>
+                          </ul>
+                        </li>
+                        <li class="skill-category">
                           <div class="category-title">Security & Monitoring</div>
                           <ul class="skills-sub-list">
                             <li>Azure Sentinel (Security Monitoring)</li>
@@ -273,12 +307,6 @@
                             <li>Mail Server Security</li>
                           </ul>
                         </li>
-                      </ul>
-                    </div>
-
-                    <!-- Second Column -->
-                    <div class="skills-column">
-                      <ul class="skills-main-list">
                         <li class="skill-category">
                           <div class="category-title">Web & Application Deployment</div>
                           <ul class="skills-sub-list">
@@ -294,113 +322,8 @@
                             <li>Windows Server Management</li>
                           </ul>
                         </li>
-                        <li class="skill-category">
-                          <div class="category-title">Programming & Scripting</div>
-                          <ul class="skills-sub-list">
-                            <li>Shell Scripting (for automation & server management)</li>
-                          </ul>
-                        </li>
                       </ul>
                     </div>
-                  </div>
-
-                  <!-- Centered 7th Item -->
-                  <div class="skills-centered-item">
-                    <ul class="skills-main-list">
-                      <li class="skill-category">
-                        <div class="category-title" style="text-align: center;">Soft Skills</div>
-                        <ul class="skills-sub-list">
-                          <li>Collaboration with engineers</li>
-                          <li>Problem-solving and troubleshooting</li>
-                          <li>Communication (English B2, Urdu C2)</li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li class="l-section section">
-              <div class="hire">
-                <h2>Technical Skills</h2>
-                <div class="skills-container">
-                  <div class="skills-columns-container">
-                    <!-- First Column -->
-                    <div class="skills-column">
-                      <ul class="skills-main-list">
-                        <li class="skill-category">
-                          <div class="category-title">Cloud & Infrastructure Management</div>
-                          <ul class="skills-sub-list">
-                            <li>AWS (EC2, IAM, S3, etc.)</li>
-                            <li>Azure</li>
-                            <li>Google Cloud Platform (GCP)</li>
-                            <li>Digital Ocean</li>
-                            <li>Hetzner</li>
-                            <li>Contabo</li>
-                            <li>IIS server deployment & management</li>
-                          </ul>
-                        </li>
-                        <li class="skill-category">
-                          <div class="category-title">DevOps & Automation</div>
-                          <ul class="skills-sub-list">
-                            <li>Git (GitHub, GitLab)</li>
-                            <li>CI/CD Pipelines (GitLab CI/CD)</li>
-                            <li>Infrastructure as Code (IaC) with Terraform</li>
-                            <li>Docker</li>
-                            <li>Jenkins</li>
-                          </ul>
-                        </li>
-                        <li class="skill-category">
-                          <div class="category-title">Security & Monitoring</div>
-                          <ul class="skills-sub-list">
-                            <li>Azure Sentinel (Security Monitoring)</li>
-                            <li>Zero Trust Security Model</li>
-                            <li>Mail Server Security</li>
-                          </ul>
-                        </li>
-                      </ul>
-                    </div>
-
-                    <!-- Second Column -->
-                    <div class="skills-column">
-                      <ul class="skills-main-list">
-                        <li class="skill-category">
-                          <div class="category-title">Web & Application Deployment</div>
-                          <ul class="skills-sub-list">
-                            <li>Web Servers (IIS, Apache, NGINX)</li>
-                            <li>Odoo System & Database Management</li>
-                            <li>Experience in ERP and CRM systems</li>
-                          </ul>
-                        </li>
-                        <li class="skill-category">
-                          <div class="category-title">Operating Systems & Administration</div>
-                          <ul class="skills-sub-list">
-                            <li>Linux Server Administration (Ubuntu, CentOS)</li>
-                            <li>Windows Server Management</li>
-                          </ul>
-                        </li>
-                        <li class="skill-category">
-                          <div class="category-title">Programming & Scripting</div>
-                          <ul class="skills-sub-list">
-                            <li>Shell Scripting (for automation & server management)</li>
-                          </ul>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-
-                  <!-- Centered 7th Item -->
-                  <div class="skills-centered-item">
-                    <ul class="skills-main-list">
-                      <li class="skill-category">
-                        <div class="category-title">Soft Skills</div>
-                        <ul class="skills-sub-list">
-                          <li>Collaboration with engineers</li>
-                          <li>Problem-solving and troubleshooting</li>
-                          <li>Communication (English B2, Urdu C2)</li>
-                        </ul>
-                      </li>
-                    </ul>
                   </div>
                 </div>
               </div>
