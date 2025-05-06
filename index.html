@@ -12,346 +12,14 @@
   <link rel="stylesheet" href="assets/css/main.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
-    /* General Styles */
-    .about {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-
-
-    .about--banner h2 {
-      text-align: center;
-
-      font-size: 2.5rem;
-      font-weight: 900;
-      line-height: 1.2;
-      margin-bottom: 20px;
-    }
-
-    .about--banner a p {
-      position: relative;
-      color: #fff;
-      position: relative;
-      bottom: 8px;
-      font-size: 1rem;
-      -webkit-transition: bottom .2s ease-in-out, left .2s ease-in-out;
-      transition: bottom .2s ease-in-out, left .2s ease-in-out
-    }
-
-    .about--banner a {
-      color: #fff
-    }
-
-
-
-    .about--banner img {
-      max-width: 100%;
-      height: auto;
-      margin-top: 20px;
-      margin-right: -10px;
-    }
-
-    .about--options {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 10px;
-      margin-top: 10px;
-    }
-
-    .about--options h2 {
-      position: relative;
-
-      font-size: 1.5rem;
-      text-transform: uppercase;
-      -webkit-transition: bottom .2s ease-in-out, left .2s ease-in-out;
-      transition: bottom .2s ease-in-out, left .2s ease-in-out
-    }
-
-    .about--options h3 {
-      text-transform: uppercase;
-      transition: bottom .2s ease-in-out, left .2s ease-in-out, ;
-    }
-
-    .about--options a {
-      flex: 1 1 calc(77.333% - 0px);
-      max-width: fit-content;
-      height: auto;
-      text-align: center;
-
-      /* background-color: #f4f4f4; */
-      border-radius: 10px;
-      text-decoration: none;
-      color: #f4f4f4;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .about--options a:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    }
-
-    .about--options h3 {
-      font-size: 1.5rem;
-      margin-bottom: 10px;
-    }
-
-    .about--options p {
-      font-size: 1rem;
-      line-height: 1.5;
-      text-transform: unset;
-    }
-
-    /* Media query for screens with a maximum width of 1180px */
-    @media (max-width: 1180px) {
-      .about {
-        max-width: 100%;
-      }
-
-      .about--banner {
-        height: auto;
-      }
-
-      .about--banner h2 {
-        font-size: 48px;
-        margin-top: 20px;
-      }
-
-      .about--banner h2::before {
-        top: 40px;
-        left: 200px;
-      }
-
-      .about--banner h2::after {
-        top: 200px;
-        left: 200px;
-      }
-    }
-
-    /* Media query for screens with a maximum width of 767px */
-    @media (max-width: 667px) {
-      .about {
-        height: auto;
-        width: 100%;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0px;
-      }
-
-      .about--banner {
-        height: 205px;
-      }
-
-      .about--banner h2 {
-        font-size: 28px;
-        margin-top: 10px;
-      }
-
-      .about--banner h2::before {
-        top: 28px;
-        left: 148px;
-      }
-
-      .about--banner h2::after {
-        top: 163px;
-        left: 143px;
-      }
-
-      .about--banner a p {
-        position: relative;
-
-        color: #fff;
-        position: relative;
-        bottom: 18px;
-        font-size: 12px;
-        text-transform: uppercase;
-        -webkit-transition: bottom .2s ease-in-out, left .2s ease-in-out;
-        transition: bottom .2s ease-in-out, left .2s ease-in-out
-      }
-
-    }
-
-
-    @media (max-width: 667px) {
-      .about--options {
-        flex-direction: column;
-        /* Stack children vertically */
-        align-items: flex-start;
-        /* Align items to the left */
-        gap: 20px;
-        /* Increase gap for better spacing */
-      }
-
-      .about--options a {
-        flex: 1 1 100%;
-        /* Full width for each anchor */
-        max-width: 100%;
-        /* Ensure full width */
-        text-align: left;
-        /* Align text to the left */
-        box-sizing: border-box;
-        /* Include padding in width calculation */
-      }
-
-      .about--options h2 {
-        font-size: 1.3rem;
-        /* Slightly reduce font size for h2 */
-      }
-
-      .about--options h3 {
-        font-size: 1.2rem;
-        /* Slightly reduce font size for h3 */
-        margin-bottom: 5px;
-        /* Reduce margin for better spacing */
-      }
-
-      .about--options p {
-        font-size: 10px;
-        /* Slightly reduce font size for paragraphs */
-        margin-bottom: 0;
-        /* Remove margin to prevent overflow */
-      }
-    }
-
-    /* Media query for screens with a maximum width of 600px */
-    @media (max-width: 600px) {
-      .about--banner {
-        height: auto;
-        margin-top: -25px;
-      }
-
-      .about--banner h2 {
-        font-size: 28px;
-        margin-top: 0;
-      }
-
-      .about--banner h2::before {
-        top: 20px;
-        left: 120px;
-      }
-
-      .about--banner h2::after {
-        top: 150px;
-        left: 120px;
-      }
-
-      .about--options h2 {
-        font-size: 18px;
-      }
-
-      .about--options h3 {
-        font-size: 16px;
-      }
-
-      .about--options p {
-        font-size: 12px;
-      }
-    }
-
-    body {
-      position: relative;
-      background-image: url(../website/assets/img/main.jpeg);
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: center center;
-    }
-
-    body::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5));
-      opacity: 0.9;
-      z-index: -1;
-    }
-
-    .social-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
-      margin-top: 20px;
-      flex-direction: column;
-    }
-
-    .social-links a {
-      display: flex;
-      align-items: center;
-      text-decoration: none;
-      color: #fff;
-      font-size: 19px;
-      padding: 1px 8px;
-      border-radius: 5px;
-      transition: background-color 0.3s ease, transform 0.3s ease;
-    }
-
-    .social-links a:hover {
-      background-color: #1661c7;
-      color: #fff;
-      transform: translateY(-3px);
-    }
-
-    .social-links a i {
-      font-size: 1.2rem;
-      margin-right: 8px;
-    }
-
-    .social-links a span {
-      font-size: 1rem;
-      font-weight: 500;
-    }
-
-    /* Media Queries */
-    @media (max-width: 1024px) {
-      .about--banner h2 {
-        font-size: 3rem;
-      }
-
-      .about--options a {
-        flex: 1 1 calc(50% - 20px);
-      }
-    }
-
-    @media (max-width: 767px) {
-      .about--banner h2 {
-        font-size: 1.75rem;
-      }
-
-      .about--options {
-        flex-direction: column;
-      }
-
-
-    }
-
-    @media (max-width: 480px) {
-      .about--banner h2 {
-        font-size: 1.5rem;
-      }
-
-      .about--banner a {
-        font-size: 12px;
-        padding: 8px 10px;
-      }
-
-      .about--options h3 {
-        font-size: 1.25rem;
-      }
-
-      .about--options p {
-        font-size: 12px;
-      }
-
-    }
+    .header--logo img{border: 0; width:50px}
+    .about{position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;width:100%;max-width:1200px;margin:0 auto;padding:20px;}.about--banner h2{text-align:center;font-size:2.5rem;font-weight:900;line-height:1.2;margin-bottom:20px;}.about--banner a p{position:relative;color:#fff;bottom:-8px;font-size:1rem;transition:bottom .2s ease-in-out,left .2s ease-in-out;-webkit-transition:bottom .2s ease-in-out,left .2s ease-in-out;}.about--banner a{color:#fff;}.about--banner img{max-width:100%;height:auto;margin-top:20px;margin-right:-10px;}.about--options{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;margin-top:10px;}.about--options h2{position:relative;font-size:1.5rem;text-transform:uppercase;transition:bottom .2s ease-in-out,left .2s ease-in-out;-webkit-transition:bottom .2s ease-in-out,left .2s ease-in-out;}.about--options h3{text-transform:uppercase;transition:bottom .2s ease-in-out,left .2s ease-in-out;}.about--options a{flex:1 1 calc(77.333% - 0px);max-width:fit-content;height:auto;text-align:center;border-radius:10px;text-decoration:none;color:#f4f4f4;transition:transform .3s ease,box-shadow .3s ease;}.about--options a:hover{transform:translateY(-10px);box-shadow:0 10px 20px rgba(0,0,0,.1);}.about--options h3{font-size:1.5rem;margin-bottom:10px;}.about--options p{font-size:1rem;line-height:1.5;text-transform:unset;}
+    @media (max-width:1180px){.about{max-width:100%;}.about--banner{height:auto;}.about--banner h2{font-size:48px;margin-top:20px;}.about--banner h2::before{top:40px;left:200px;}.about--banner h2::after{top:200px;left:200px;}}
+    @media (max-width:1024px){.about--banner h2{font-size:3rem;}.about--options a{flex:1 1 calc(50% - 20px);}}
+    @media (max-width:767px){.about--banner h2{font-size:1.75rem;}.about--options{flex-direction:column;}}
+    @media (max-width:667px){.about{height:auto;width:100%;max-width:1200px;margin:0 auto;padding:0;}.about--banner{height:205px;}.about--banner h2{font-size:28px;margin-top:10px;}.about--banner h2::before{top:28px;left:148px;}.about--banner h2::after{top:163px;left:143px;}.about--banner a p{color:#fff;bottom:18px;font-size:12px;text-transform:uppercase;transition:bottom .2s ease-in-out,left .2s ease-in-out;-webkit-transition:bottom .2s ease-in-out,left .2s ease-in-out;}.about--options{flex-direction:column;align-items:flex-start;gap:20px;}.about--options a{flex:1 1 100%;max-width:100%;text-align:left;box-sizing:border-box;}.about--options h2{font-size:1.3rem;}.about--options h3{font-size:1.2rem;margin-bottom:5px;}.about--options p{font-size:10px;margin-bottom:0;}}
+    @media (max-width:600px){.about--banner{height:auto;margin-top:-25px;}.about--banner h2{font-size:28px;margin-top:0;}.about--banner h2::before{top:20px;left:120px;}.about--banner h2::after{top:150px;left:120px;}.about--options h2{font-size:18px;}.about--options h3{font-size:16px;}.about--options p{font-size:12px;}}
+    @media (max-width:480px){.about--banner h2{font-size:1.5rem;}.about--banner a{font-size:12px;padding:8px 10px;}.about--options h3{font-size:1.25rem;}.about--options p{font-size:12px;}}
   </style>
 
 </head>
@@ -361,7 +29,7 @@
   <!-- notification for small viewports and landscape oriented smartphones -->
   <div class="device-notification">
     <a class="device-notification--logo" href="#0">
-      <img src="assets/img/logo.png">
+      <img src="assets/img/logo.webp">
       <p>Talal Yousaf Swati</p>
     </a>
   </div>
@@ -373,10 +41,11 @@
         <div class="l-wrapper">
           <header class="header">
             <a class="header--logo" href="#0">
-              <img src="assets/img/logo.png" alt="Global">
+              <img src="assets/img/logo.webp" >
               <p>Talal Yousaf Swati</p>
             </a>
-            <button class="header--cta cta" ><a href="https://wa.me/923379746734" style="color:white;">Lets Connect</a></button>
+            <button class="header--cta cta"><a href="https://wa.me/923379746734" style="color:white;">Lets
+                Connect</a></button>
             <div class="header--nav-toggle">
               <span></span>
             </div>
@@ -395,7 +64,7 @@
               <div class="intro">
                 <div class="intro--banner">
                   <h1 style="font-size: xx-large;"> Talal Yousaf Swati</h1>
-                    <h2>DevOps Engineer</h2>
+                  <h2>DevOps Engineer</h2>
                   <button class="cta"><a href="https://wa.me/923379746734" style="color:white;">Lets connect</a>
                     <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                       xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 150 118"
@@ -415,7 +84,7 @@
                     <h3>talalswatidevops@gmail.com</h3>
                   </a>
                   <div class="social-links">
-                    <a href="https://www.upwork.com/freelancers/~YOUR_UPWORK_PROFILE" target="_blank">
+                    <a href="https://www.upwork.com/freelancers/~0183e0261150d749ea" target="_blank">
                       <i class="fab fa-upwork"></i>
                       <span>Upwork</span>
                     </a>
@@ -475,7 +144,7 @@
 
                     <li class="slider--item slider--item-right">
                       <a href="#0">
-                        <div class="slider--item-image" style="width: 300px;height:200px;">
+                        <div class="slider--item-image">
                           <a href="https://axiomworld.net/">
                             <img src="assets/img/axiom.png" alt="Axiom World">
                           </a>
@@ -569,87 +238,171 @@
             <li class="l-section section">
               <div class="hire">
                 <h2>Technical Skills</h2>
-                <!-- checkout formspree.io for easy form setup -->
-                <form class="work-request">
-                  <div class="work-request--options">
-                    <span class="options-a">
-                      <input id="opt-1" type="checkbox" value="app design">
-                      <label for="opt-1">
-                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-                          xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 150 111"
-                          style="enable-background:new 0 0 150 111;" xml:space="preserve">
-                          <g transform="translate(0.000000,111.000000) scale(0.100000,-0.100000)">
-                            <path
-                              d="M950,705L555,310L360,505C253,612,160,700,155,700c-6,0-44-34-85-75l-75-75l278-278L550-5l475,475c261,261,475,480,475,485c0,13-132,145-145,145C1349,1100,1167,922,950,705z" />
-                          </g>
-                        </svg>
-                        Linux Server / Ubuntu / AWS
-                      </label>
-                      <input id="opt-2" type="checkbox" value="graphic design">
-                      <label for="opt-2">
-                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-                          xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 150 111"
-                          style="enable-background:new 0 0 150 111;" xml:space="preserve">
-                          <g transform="translate(0.000000,111.000000) scale(0.100000,-0.100000)">
-                            <path
-                              d="M950,705L555,310L360,505C253,612,160,700,155,700c-6,0-44-34-85-75l-75-75l278-278L550-5l475,475c261,261,475,480,475,485c0,13-132,145-145,145C1349,1100,1167,922,950,705z" />
-                          </g>
-                        </svg>
-                        Docker / Jenkins / Terraform
-                      </label>
-                      <input id="opt-3" type="checkbox" value="motion design">
-                      <label for="opt-3">
-                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-                          xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 150 111"
-                          style="enable-background:new 0 0 150 111;" xml:space="preserve">
-                          <g transform="translate(0.000000,111.000000) scale(0.100000,-0.100000)">
-                            <path
-                              d="M950,705L555,310L360,505C253,612,160,700,155,700c-6,0-44-34-85-75l-75-75l278-278L550-5l475,475c261,261,475,480,475,485c0,13-132,145-145,145C1349,1100,1167,922,950,705z" />
-                          </g>
-                        </svg>
-                        AWS, GCP, Digital Ocean, Azure
-                      </label>
-                    </span>
-                    <span class="options-b">
-                      <input id="opt-4" type="checkbox" value="ux design">
-                      <label for="opt-4">
-                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-                          xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 150 111"
-                          style="enable-background:new 0 0 150 111;" xml:space="preserve">
-                          <g transform="translate(0.000000,111.000000) scale(0.100000,-0.100000)">
-                            <path
-                              d="M950,705L555,310L360,505C253,612,160,700,155,700c-6,0-44-34-85-75l-75-75l278-278L550-5l475,475c261,261,475,480,475,485c0,13-132,145-145,145C1349,1100,1167,922,950,705z" />
-                          </g>
-                        </svg>
-                        Web Servers: IIS, Apache, NGINX
-                      </label>
-                      <input id="opt-5" type="checkbox" value="webdesign">
-                      <label for="opt-5">
-                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-                          xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 150 111"
-                          style="enable-background:new 0 0 150 111;" xml:space="preserve">
-                          <g transform="translate(0.000000,111.000000) scale(0.100000,-0.100000)">
-                            <path
-                              d="M950,705L555,310L360,505C253,612,160,700,155,700c-6,0-44-34-85-75l-75-75l278-278L550-5l475,475c261,261,475,480,475,485c0,13-132,145-145,145C1349,1100,1167,922,950,705z" />
-                          </g>
-                        </svg>
-                        Odoo Database & System Management
-                      </label>
-                      <input id="opt-6" type="checkbox" value="marketing">
-                      <label for="opt-6">
-                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-                          xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 150 111"
-                          style="enable-background:new 0 0 150 111;" xml:space="preserve">
-                          <g transform="translate(0.000000,111.000000) scale(0.100000,-0.100000)">
-                            <path
-                              d="M950,705L555,310L360,505C253,612,160,700,155,700c-6,0-44-34-85-75l-75-75l278-278L550-5l475,475c261,261,475,480,475,485c0,13-132,145-145,145C1349,1100,1167,922,950,705z" />
-                          </g>
-                        </svg>
-                        Security & Zero Trust Implementation
-                      </label>
-                    </span>
+                <div class="skills-container">
+                  <div class="skills-columns-container">
+                    <!-- First Column -->
+                    <div class="skills-column">
+                      <ul class="skills-main-list">
+                        <li class="skill-category">
+                          <div class="category-title">Cloud & Infrastructure Management</div>
+                          <ul class="skills-sub-list">
+                            <li>AWS (EC2, IAM, S3, etc.)</li>
+                            <li>Azure</li>
+                            <li>Google Cloud Platform (GCP)</li>
+                            <li>Digital Ocean</li>
+                            <li>Hetzner</li>
+                            <li>Contabo</li>
+                            <li>IIS server deployment & management</li>
+                          </ul>
+                        </li>
+                        <li class="skill-category">
+                          <div class="category-title">DevOps & Automation</div>
+                          <ul class="skills-sub-list">
+                            <li>Git (GitHub, GitLab)</li>
+                            <li>CI/CD Pipelines (GitLab CI/CD)</li>
+                            <li>Infrastructure as Code (IaC) with Terraform</li>
+                            <li>Docker</li>
+                            <li>Jenkins</li>
+                          </ul>
+                        </li>
+                        <li class="skill-category">
+                          <div class="category-title">Security & Monitoring</div>
+                          <ul class="skills-sub-list">
+                            <li>Azure Sentinel (Security Monitoring)</li>
+                            <li>Zero Trust Security Model</li>
+                            <li>Mail Server Security</li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <!-- Second Column -->
+                    <div class="skills-column">
+                      <ul class="skills-main-list">
+                        <li class="skill-category">
+                          <div class="category-title">Web & Application Deployment</div>
+                          <ul class="skills-sub-list">
+                            <li>Web Servers (IIS, Apache, NGINX)</li>
+                            <li>Odoo System & Database Management</li>
+                            <li>Experience in ERP and CRM systems</li>
+                          </ul>
+                        </li>
+                        <li class="skill-category">
+                          <div class="category-title">Operating Systems & Administration</div>
+                          <ul class="skills-sub-list">
+                            <li>Linux Server Administration (Ubuntu, CentOS)</li>
+                            <li>Windows Server Management</li>
+                          </ul>
+                        </li>
+                        <li class="skill-category">
+                          <div class="category-title">Programming & Scripting</div>
+                          <ul class="skills-sub-list">
+                            <li>Shell Scripting (for automation & server management)</li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
 
+                  <!-- Centered 7th Item -->
+                  <div class="skills-centered-item">
+                    <ul class="skills-main-list">
+                      <li class="skill-category">
+                        <div class="category-title" style="text-align: center;">Soft Skills</div>
+                        <ul class="skills-sub-list">
+                          <li>Collaboration with engineers</li>
+                          <li>Problem-solving and troubleshooting</li>
+                          <li>Communication (English B2, Urdu C2)</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="l-section section">
+              <div class="hire">
+                <h2>Technical Skills</h2>
+                <div class="skills-container">
+                  <div class="skills-columns-container">
+                    <!-- First Column -->
+                    <div class="skills-column">
+                      <ul class="skills-main-list">
+                        <li class="skill-category">
+                          <div class="category-title">Cloud & Infrastructure Management</div>
+                          <ul class="skills-sub-list">
+                            <li>AWS (EC2, IAM, S3, etc.)</li>
+                            <li>Azure</li>
+                            <li>Google Cloud Platform (GCP)</li>
+                            <li>Digital Ocean</li>
+                            <li>Hetzner</li>
+                            <li>Contabo</li>
+                            <li>IIS server deployment & management</li>
+                          </ul>
+                        </li>
+                        <li class="skill-category">
+                          <div class="category-title">DevOps & Automation</div>
+                          <ul class="skills-sub-list">
+                            <li>Git (GitHub, GitLab)</li>
+                            <li>CI/CD Pipelines (GitLab CI/CD)</li>
+                            <li>Infrastructure as Code (IaC) with Terraform</li>
+                            <li>Docker</li>
+                            <li>Jenkins</li>
+                          </ul>
+                        </li>
+                        <li class="skill-category">
+                          <div class="category-title">Security & Monitoring</div>
+                          <ul class="skills-sub-list">
+                            <li>Azure Sentinel (Security Monitoring)</li>
+                            <li>Zero Trust Security Model</li>
+                            <li>Mail Server Security</li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <!-- Second Column -->
+                    <div class="skills-column">
+                      <ul class="skills-main-list">
+                        <li class="skill-category">
+                          <div class="category-title">Web & Application Deployment</div>
+                          <ul class="skills-sub-list">
+                            <li>Web Servers (IIS, Apache, NGINX)</li>
+                            <li>Odoo System & Database Management</li>
+                            <li>Experience in ERP and CRM systems</li>
+                          </ul>
+                        </li>
+                        <li class="skill-category">
+                          <div class="category-title">Operating Systems & Administration</div>
+                          <ul class="skills-sub-list">
+                            <li>Linux Server Administration (Ubuntu, CentOS)</li>
+                            <li>Windows Server Management</li>
+                          </ul>
+                        </li>
+                        <li class="skill-category">
+                          <div class="category-title">Programming & Scripting</div>
+                          <ul class="skills-sub-list">
+                            <li>Shell Scripting (for automation & server management)</li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <!-- Centered 7th Item -->
+                  <div class="skills-centered-item">
+                    <ul class="skills-main-list">
+                      <li class="skill-category">
+                        <div class="category-title">Soft Skills</div>
+                        <ul class="skills-sub-list">
+                          <li>Collaboration with engineers</li>
+                          <li>Problem-solving and troubleshooting</li>
+                          <li>Communication (English B2, Urdu C2)</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </li>
           </ul>
@@ -668,6 +421,16 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery-2.2.4.min.js"><\/script>')</script>
   <script src="assets/js/functions-min.js"></script>
+  <script>
+    // For click functionality (uncomment if you prefer click over hover)
+    /*
+    document.querySelectorAll('.skill-category').forEach(item => {
+      item.addEventListener('click', function() {
+        this.classList.toggle('active');
+      });
+    });
+    */
+  </script>
 </body>
 
 </html>
