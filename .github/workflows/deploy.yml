@@ -35,9 +35,9 @@ jobs:
       - name: Test SSH Connection
         run: |
           echo "Testing SSH connection to mahnoor@98.70.32.226..."
-          ssh -o StrictHostKeyChecking=no mahnoor@98.70.32.226 "echo '✅ SSH connection successful!'"
+          ssh -p 2222 -o StrictHostKeyChecking=no mahnoor@98.70.32.226 "echo '✅ SSH connection successful!'"
 
       - name: Deploy to Azure VM
         run: |
           echo "Starting deployment on Azure VM..."
-          ssh -o StrictHostKeyChecking=no mahnoor@98.70.32.226 "bash ~/my-website/deploy.sh"
+          ssh -p 2222 -o StrictHostKeyChecking=no mahnoor@98.70.32.226 "bash ~/my-website/deploy.sh"
