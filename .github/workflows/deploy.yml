@@ -1,0 +1,28 @@
+name: Deploy to Azure Production
+
+on:
+  push:
+    branches:
+      - main  # Trigger on push to main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup SSH Agent
+        uses: webfactory/ssh-agent@v0.8.1
+        with:
+          ssh-private-key: ${{ secrets.PRODUCTION_SSH_KEY }}
+
+      - name: Add Azure VM to known hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H your.azure.vm.ip >> ~/.ssh/known_hosts
+
+      - name: Deploy to Azure VM
+        run: |
+          ssh -p 2222 azureuser@98.70.32.226 "~/my-website/deploy.sh"
+         
