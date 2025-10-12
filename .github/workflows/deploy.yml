@@ -29,7 +29,7 @@ jobs:
           mkdir -p ~/.ssh
           chmod 700 ~/.ssh
           echo "Adding host key for 98.70.32.226"
-          ssh-keyscan -T 30 -p 22 98.70.32.226 >> ~/.ssh/known_hosts 2>/dev/null
+          ssh-keyscan -T 30 -p 2222 98.70.32.226 >> ~/.ssh/known_hosts 2>/dev/null
           echo "Known hosts added successfully."
 
       - name: Test SSH Connection
