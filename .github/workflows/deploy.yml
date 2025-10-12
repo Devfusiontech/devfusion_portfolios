@@ -1,28 +1,43 @@
+
 name: Deploy to Azure Production
 
 on:
   push:
     branches:
-      - main  # Trigger on push to main branch
+      - main  # Trigger deployment on push to main branch
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup SSH Agent
-        uses: webfactory/ssh-agent@v0.8.1
+        uses: webfactory/ssh-agent@v0.9.0
         with:
           ssh-private-key: ${{ secrets.PRODUCTION_SSH_KEY }}
+
+      - name: Verify SSH key setup
+        run: |
+          echo "Checking SSH key fingerprint..."
+          ssh-add -l || echo "No keys added!"
 
       - name: Add Azure VM to known hosts
         run: |
           mkdir -p ~/.ssh
-          ssh-keyscan -H your.azure.vm.ip >> ~/.ssh/known_hosts
+          chmod 700 ~/.ssh
+          echo "Adding host key for 98.70.32.226"
+          ssh-keyscan -T 30 -p 2222 98.70.32.226 >> ~/.ssh/known_hosts 2>/dev/null
+          echo "Known hosts added successfully."
+
+      - name: Test SSH Connection
+        run: |
+          echo "Testing SSH connection to mahnoor@98.70.32.226..."
+          ssh -p 2222 -o StrictHostKeyChecking=no mahnoor@98.70.32.226 "echo '✅ SSH connection successful!'"
 
       - name: Deploy to Azure VM
         run: |
-          ssh -p 2222 azureuser@98.70.32.226 "~/my-website/deploy.sh"
-         
+          echo "Starting deployment on Azure VM..."
+          ssh -p 2222 -o StrictHostKeyChecking=no mahnoor@98.70.32.226 "bash ~/my-website/deploy.sh"
