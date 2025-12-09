@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Monitoring vs Observability: Build Systems You Can Trust</title>
+    <meta name="description"
+        content="Understand the difference: monitoring answers known questions; observability lets you ask new ones. Covers metrics, logs, traces, SLOs, and practical Grafana/Prometheus setups." />
+    <meta name="keywords"
+        content="monitoring vs observability, SLOs, SLIs, error budgets, metrics logs traces, Grafana, Prometheus, OpenTelemetry, tracing, alerting best practices" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Monitoring vs Observability: Build Systems You Can Trust" />
+    <meta property="og:description"
+        content="Metrics, logs, traces, SLOs, and alerting patterns with Prometheus/Grafana & OpenTelemetry." />
+    <meta property="og:image"
+        content="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1600&auto=format&fit=crop" />
+    <meta property="og:url" content="https://yourdomain.com/blog-monitoring-vs-observability.html" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Monitoring vs Observability: Build Systems You Can Trust" />
+    <meta name="twitter:description"
+        content="Metrics, logs, traces, SLOs, and alerting patterns with Prometheus/Grafana & OpenTelemetry." />
+    <meta name="twitter:image"
+        content="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1600&auto=format&fit=crop" />
+
+    <!-- <link href="assets/img/favicon.png" rel="icon" />
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" /> -->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+    <link href="assets/css/main.css" rel="stylesheet" />
+
+    <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Article",
+    "headline":"Monitoring vs Observability: Build Systems You Can Trust",
+    "image":"https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1600&auto=format&fit=crop",
+    "author":{"@type":"Person","name":"Talal Yousaf"},
+    "datePublished":"2024-03-08",
+    "dateModified":"2024-03-08",
+    "mainEntityOfPage":{"@type":"WebPage","@id":"https://yourdomain.com/blog-monitoring-vs-observability.html"}
+  }
+  </script>
+   
+</head>
+
+<body class="service-details-page">
+    <header id="header" class="header d-flex align-items-center sticky-top">
+        <div class="container-fluid container-xl position-relative d-flex align-items-center">
+            <a href="index.html" class="logo d-flex align-items-center me-auto">
+                <h1 class="sitename">Talal Yousaf</h1>
+            </a>
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                    <li><a href="index.html#hero">Home</a></li>
+                    <li><a href="index.html#blog" class="active">Blog</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </nav>
+            <a class="btn-getstarted" href="index.html#contact">Hire Me</a>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="page-title light-background">
+            <div class="container">
+                <nav class="breadcrumbs">
+                    <ol>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#blog">Blog</a></li>
+                        <li class="current">Monitoring vs Observability</li>
+                    </ol>
+                </nav>
+                <h1>Monitoring vs Observability</h1>
+            </div>
+        </div>
+
+        <section class="service-details section">
+            <div class="container" data-aos="fade-up" data-aos-delay="100">
+                <div class="row">
+                    <aside class="col-lg-4 order-lg-2">
+                        <div class="sticky-sidebar">
+                            <div class="service-card" data-aos="fade-left" data-aos-delay="150">
+                                <div class="card-header">
+                                    <div class="service-icon"><i class="bi bi-activity"></i></div>
+                                    <h3>Observability Stack</h3>
+                                    <p class="service-tagline">Metrics • Logs • Traces</p>
+                                </div>
+                                <div class="card-body">
+                                    <ul class="quick-info">
+                                        <li><i class="bi bi-check2-circle"></i><span>OpenTelemetry</span></li>
+                                        <li><i class="bi bi-check2-circle"></i><span>Prometheus & Alertmanager</span>
+                                        </li>
+                                        <li><i class="bi bi-check2-circle"></i><span>Grafana dashboards</span></li>
+                                        <li><i class="bi bi-check2-circle"></i><span>SLOs & error budgets</span></li>
+                                    </ul>
+                                    <div class="cta-buttons">
+                                        <a href="index.html#services" class="btn-primary">Build my stack</a>
+                                        <a href="index.html#contact" class="btn-secondary">Dashboard demo</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+
+                    <article class="col-lg-8 order-lg-1">
+                        <div class="service-image-showcase" data-aos="zoom-in" data-aos-delay="150">
+                            <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1600&auto=format&fit=crop"
+                                alt="Monitoring dashboards" class="img-fluid main-image" />
+                        </div>
+
+                        <div class="service-overview" data-aos="fade-up" data-aos-delay="200">
+                            <div class="overview-header">
+                                <span class="badge">Monitoring</span>
+                                <h2>Know the knowns. Explain the unknowns.</h2>
+                            </div>
+                            <p class="lead-text"><strong>Monitoring</strong> verifies known conditions via curated
+                                dashboards and alerts. <strong>Observability</strong> exposes enough internal signals to
+                                answer new, unanticipated questions—vital for distributed systems.</p>
+                        </div>
+
+                        <div class="features-grid" data-aos="fade-up" data-aos-delay="250">
+                            <h3 class="section-heading">Practical Model: MELT</h3>
+                            <ul>
+                                <li><strong>Metrics</strong> — RED/USE, SLI queries, percentiles.</li>
+                                <li><strong>Events</strong> — deploys, feature flags, incidents.</li>
+                                <li><strong>Logs</strong> — structured, sampled, correlated.</li>
+                                <li><strong>Traces</strong> — end-to-end latency & spans with OTel.</li>
+                            </ul>
+                        </div>
+
+                        <div class="service-details mt-4" data-aos="fade-up" data-aos-delay="300">
+                            <h3>Alerting That Scales</h3>
+                            <ul>
+                                <li>Alert on <em>symptoms</em> (SLO breaches), not every component metric.</li>
+                                <li>Group, route, and dedupe in Alertmanager; attach runbooks.</li>
+                                <li>Use error budgets to pace releases when reliability dips.</li>
+                            </ul>
+
+                            <h3 class="mt-4">SEO Keywords Targeted</h3>
+                            <p class="text-muted">monitoring vs observability, grafana prometheus best practices,
+                                openTelemetry tracing, SLO error budget, alertmanager routing, red method, use method,
+                                logs vs traces</p>
+
+                            <div class="highlights-box mt-4">
+                                <h4>Key Takeaways</h4>
+                                <ul>
+                                    <li>Adopt OTel to unify signals across services.</li>
+                                    <li>Define SLIs/SLOs first; alerts follow from them.</li>
+                                    <li>Correlate deploy events with spikes to reduce MTTR.</li>
+                                </ul>
+                            </div>
+
+                            <h3>FAQs</h3>
+                            <p><strong>Do I need traces?</strong> If you run microservices, yes—traces reveal
+                                cross-service latency you can’t see with metrics alone.</p>
+                            <p><strong>What’s a good starter stack?</strong> Prometheus + Grafana + Loki/ELK +
+                                Tempo/Jaeger + OTel collectors.</p>
+                        </div>
+
+                        <hr class="my-5" />
+                        <h4>Related Posts</h4>
+                        <ul>
+                            <li><a href="blog-secure-cicd-jenkins-docker.html">Secure CI/CD with Jenkins & Docker</a>
+                            </li>
+                            <li><a href="blog-terraform-modules.html">Terraform Modules for AWS</a></li>
+                            <li><a href="blog-cloud-migration-strategies.html">Cloud Migration Strategies</a></li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer" class="footer">...</footer>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+ <aside class="card p-3 mb-4">
+        <strong class="mb-2 d-block">On this page</strong>
+        <div id="toc" data-toc></div>
+    </aside>
+</html>

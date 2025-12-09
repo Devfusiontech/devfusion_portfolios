@@ -264,7 +264,7 @@
               <!-- Header -->
               <div class="profile-top">
                 <div class="profile-avatar">
-                  <img src="assets/img/profile/aaaaaaaa.jpeg" alt="Talal Yousaf"
+                  <img src="assets/img/profile/aaaaaaaa.jpeg" alt="Talal Yousaf" 
                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                   <div class="placeholder-image" style="display: none;">TY</div>
                   <span class="status-indicator" title="Online"></span>

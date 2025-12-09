@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Building Reusable Terraform Modules for AWS (with Patterns & Gotchas)</title>
+  <meta name="description" content="Learn how to design reusable Terraform modules for AWS using clean inputs/outputs, versioning, DRY patterns, and CI workflows. Includes examples, folder layouts, and real-world tips." />
+  <meta name="keywords" content="Terraform modules, AWS Terraform, Infrastructure as Code, IaC best practices, Terraform variables, Terraform outputs, module versioning, Terragrunt alternative, Terraform CI/CD, reusable infrastructure" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Building Reusable Terraform Modules for AWS (with Patterns & Gotchas)" />
+  <meta property="og:description" content="Design clean, versioned Terraform modules for AWS. Patterns, folder layouts, examples, and CI integration." />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1600&auto=format&fit=crop" />
+  <meta property="og:url" content="https://yourdomain.com/blog-terraform-modules.html" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Building Reusable Terraform Modules for AWS (with Patterns & Gotchas)" />
+  <meta name="twitter:description" content="Design clean, versioned Terraform modules for AWS. Patterns, folder layouts, examples, and CI integration." />
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1600&auto=format&fit=crop" />
+
+  <!-- Favicons -->
+  <!-- <link href="assets/img/favicon.png" rel="icon" />
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" /> -->
+
+  <!-- Fonts & Vendor CSS -->
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Mulish:wght@600;800&display=swap" rel="stylesheet" />
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+  <link href="assets/css/main.css" rel="stylesheet" />
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Article",
+    "headline":"Building Reusable Terraform Modules for AWS (with Patterns & Gotchas)",
+    "image":"https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1600&auto=format&fit=crop",
+    "author":{"@type":"Person","name":"Talal Yousaf"},
+    "datePublished":"2024-04-28",
+    "dateModified":"2024-04-28",
+    "mainEntityOfPage":{"@type":"WebPage","@id":"https://yourdomain.com/blog-terraform-modules.html"},
+    "description":"How to design reusable Terraform modules for AWS with clean inputs/outputs, versioning, DRY patterns, and CI workflows."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"BreadcrumbList",
+    "itemListElement":[
+      {"@type":"ListItem","position":1,"name":"Home","item":"https://yourdomain.com/"},
+      {"@type":"ListItem","position":2,"name":"Blog","item":"https://yourdomain.com/#blog"},
+      {"@type":"ListItem","position":3,"name":"Terraform Modules for AWS"}
+    ]
+  }
+  </script>
+</head>
+<body class="service-details-page">
+
+  <!-- Header -->
+  <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+      <a href="index.html" class="logo d-flex align-items-center me-auto"><h1 class="sitename">Talal Yousaf</h1></a>
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html#hero">Home</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#services">Services</a></li>
+          <li><a href="index.html#portfolio">Portfolio</a></li>
+          <li><a href="index.html#blog" class="active">Blog</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+      <a class="btn-getstarted" href="index.html#contact">Hire Me</a>
+    </div>
+  </header>
+
+  <main class="main">
+    <!-- Title -->
+    <div class="page-title light-background">
+      <div class="container">
+        <nav class="breadcrumbs">
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#blog">Blog</a></li>
+            <li class="current">Terraform Modules</li>
+          </ol>
+        </nav>
+        <h1>Building Reusable Terraform Modules for AWS</h1>
+      </div>
+    </div>
+
+    <!-- Article -->
+    <section class="service-details section">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row">
+          <!-- Sidebar -->
+          <aside class="col-lg-4 order-lg-2">
+            <div class="sticky-sidebar">
+              <div class="service-card" data-aos="fade-left" data-aos-delay="150">
+                <div class="card-header">
+                  <div class="service-icon"><i class="bi bi-diagram-3"></i></div>
+                  <h3>Key Topics</h3>
+                  <p class="service-tagline">IaC Essentials</p>
+                </div>
+                <div class="card-body">
+                  <ul class="quick-info">
+                    <li><i class="bi bi-check2-circle"></i><span>Inputs/outputs design</span></li>
+                    <li><i class="bi bi-check2-circle"></i><span>Versioning & registries</span></li>
+                    <li><i class="bi bi-check2-circle"></i><span>Testing modules (tflint)</span></li>
+                    <li><i class="bi bi-check2-circle"></i><span>CI & publishing</span></li>
+                  </ul>
+                  <div class="cta-buttons">
+                    <a href="index.html#services" class="btn-primary">Work with me</a>
+                    <a href="index.html#contact" class="btn-secondary">Ask a question</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="contact-card" data-aos="fade-left" data-aos-delay="250">
+                <h4>Download Example</h4>
+                <p>Get a minimal AWS VPC module skeleton.</p>
+                <div class="contact-methods">
+                  <a href="#" class="contact-item"><i class="bi bi-file-earmark-arrow-down"></i><span>Terraform VPC module.zip</span></a>
+                </div>
+              </div>
+            </div>
+          </aside>
+
+          <!-- Content -->
+          <article class="col-lg-8 order-lg-1">
+            <div class="service-image-showcase" data-aos="zoom-in" data-aos-delay="150">
+              <img src="https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1600&auto=format&fit=crop" alt="Terraform on laptop" class="img-fluid main-image" />
+            </div>
+
+            <div class="service-overview" data-aos="fade-up" data-aos-delay="200">
+              <div class="overview-header">
+                <span class="badge">Infrastructure as Code</span>
+                <h2>Why modules? DRY, consistent, and production-ready infrastructure</h2>
+              </div>
+              <p class="lead-text">Terraform modules help teams share opinionated patterns—VPCs, EKS clusters, RDS, and more—while keeping configurations <strong>DRY</strong>, versioned, and reviewable.</p>
+            </div>
+
+            <div class="features-grid" data-aos="fade-up" data-aos-delay="250">
+              <h3 class="section-heading">Recommended Layout</h3>
+              <pre style="background:#0f0f0f;border-radius:8px;padding:16px;overflow:auto"><code>modules/
+  vpc/
+    main.tf
+    variables.tf
+    outputs.tf
+    README.md
+examples/
+  vpc-simple/
+    main.tf
+</code></pre>
+              <p class="mt-3">Keep examples compile-able. Your CI should plan/apply examples in a disposable workspace.</p>
+            </div>
+
+            <div class="workflow-section" data-aos="fade-up" data-aos-delay="300">
+              <h3 class="section-heading">Design Principles</h3>
+              <div class="timeline">
+                <div class="timeline-item">
+                  <div class="timeline-marker">1</div>
+                  <div class="timeline-content">
+                    <h4>Clear Inputs &amp; Sensible Defaults</h4>
+                    <p>Prefer <code>optional()</code> variables with defaults. Validate with <code>validation { condition ... }</code>.</p>
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <div class="timeline-marker">2</div>
+                  <div class="timeline-content">
+                    <h4>Minimal Outputs</h4>
+                    <p>Only expose what downstream stacks truly need (IDs, ARNs, endpoints).</p>
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <div class="timeline-marker">3</div>
+                  <div class="timeline-content">
+                    <h4>Version Everything</h4>
+                    <p>Tag releases and reference modules via immutable versions. Use a private registry or Git source with ref tags.</p>
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <div class="timeline-marker">4</div>
+                  <div class="timeline-content">
+                    <h4>Automated Checks</h4>
+                    <p>Run <code>tflint</code>, <code>terraform fmt</code>, <code>validate</code>, and <code>plan</code> on PRs. Optionally add policy checks (OPA/Sentinel).</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="service-details mt-4" data-aos="fade-up" data-aos-delay="350">
+              <h3>Common Gotchas</h3>
+              <ul>
+                <li>Over-generic modules with dozens of flags—prefer focused modules.</li>
+                <li>Leaking provider config inside modules—let root define providers.</li>
+                <li>Breaking changes without semver—respect <code>MAJOR.MINOR.PATCH</code>.</li>
+              </ul>
+
+              <h3 class="mt-4">SEO Keywords Targeted</h3>
+              <p class="text-muted">terraform modules, aws terraform modules, iac best practices, terraform module versioning, terraform folder structure, reusable terraform, terraform registry private, terraform tflint ci</p>
+
+              <div class="portfolio-details mt-4">
+                <div class="highlights-box">
+                  <h4>Key Takeaways</h4>
+                  <ul>
+                    <li>Keep modules small, composable, and versioned.</li>
+                    <li>Ship runnable examples and CI checks.</li>
+                    <li>Document inputs/outputs in <code>README.md</code>.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <h3>FAQs</h3>
+              <p><strong>Should I use Terragrunt?</strong> It can simplify multi-env orchestration, but you can also achieve parity with workspaces + pipelines if you prefer pure Terraform.</p>
+              <p><strong>Where to store modules?</strong> Private registry, Git tags, or artifact storage—choose what fits your governance.</p>
+            </div>
+
+            <hr class="my-5" />
+            <h4>Related Posts</h4>
+            <ul>
+              <li><a href="blog-secure-cicd-jenkins-docker.html">Implementing Secure CI/CD Pipelines with Jenkins & Docker</a></li>
+              <li><a href="blog-monitoring-vs-observability.html">Monitoring vs Observability: Build Better Systems</a></li>
+              <li><a href="blog-cloud-migration-strategies.html">Strategies for Successful Cloud Migration</a></li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer & JS -->
+  <footer id="footer" class="footer">...</footer>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+ <aside class="card p-3 mb-4">
+        <strong class="mb-2 d-block">On this page</strong>
+        <div id="toc" data-toc></div>
+    </aside>
+</html>
