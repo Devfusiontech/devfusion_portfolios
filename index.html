@@ -1,273 +1,313 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Mahnoor Saeed — Junior DevOps Engineer</title>
-  <meta name="description" content="Mahnoor Saeed — Junior DevOps Engineer | Azure, Docker, Kubernetes, Terraform, CI/CD" />
-  <link rel="stylesheet" href="style.css" />
-  <script defer src="script.js"></script>
+  <title>Mahnoor | Associate DevOps Engineer</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="HTML5 website template">
+  <meta name="keywords" content="global, template, html, sass, jquery">
+  <meta name="author" content="Bucky Maler">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Favicon Setup (Corrected & Optimized) -->
+  <link rel="icon" href="assets/img/white_monogram.png" type="image/x-icon"> <!-- Standard .ico fallback -->
+  <link rel="icon" href="assets/img/white_monogram.png" type="image/svg+xml"> <!-- Recommended scalable version -->
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png"> <!-- For iOS devices (180×180px) -->
+  <style>
+    .intro--banner h1{font-size: xx-large;font-weight: 700;}
+    .about{position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;width:100%;max-width:1200px;margin:0 auto;padding:20px;}.about--banner h2{text-align:center;font-size:2.5rem;font-weight:900;line-height:1.2;margin-bottom:20px;}.about--banner a p{position:relative;color:#fff;bottom:-8px;font-size:1rem;transition:bottom .2s ease-in-out,left .2s ease-in-out;-webkit-transition:bottom .2s ease-in-out,left .2s ease-in-out;}.about--banner a{color:#fff;}.about--banner img{max-width:100%;height:auto;margin-top:20px;margin-right:-10px;}.about--options{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px;margin-top:10px;}.about--options h2{position:relative;font-size:1.5rem;text-transform:uppercase;transition:bottom .2s ease-in-out,left .2s ease-in-out;-webkit-transition:bottom .2s ease-in-out,left .2s ease-in-out;}.about--options h3{text-transform:uppercase;transition:bottom .2s ease-in-out,left .2s ease-in-out;}.about--options a{flex:1 1 calc(77.333% - 0px);max-width:fit-content;height:auto;text-align:center;border-radius:10px;text-decoration:none;color:#f4f4f4;transition:transform .3s ease,box-shadow .3s ease;}.about--options a:hover{transform:translateY(-10px);box-shadow:0 10px 20px rgba(0,0,0,.1);}.about--options h3{font-size:1.5rem;margin-bottom:10px;}.about--options p{font-size:1rem;line-height:1.5;text-transform:unset;}
+    @media (max-width:1180px){.about{max-width:100%;}.about--banner{height:auto;}.about--banner h2{font-size:48px;margin-top:20px;}.about--banner h2::before{top:40px;left:200px;}.about--banner h2::after{top:200px;left:200px;}}
+    @media (max-width:1024px){.about--banner h2{font-size:3rem;}.about--options a{flex:1 1 calc(50% - 20px);}}
+    @media (max-width:767px){.about--banner h2{font-size:1.75rem;}.about--options{flex-direction:column;}}
+    @media (max-width:667px){.about{height:auto;width:100%;max-width:1200px;margin:0 auto;padding:0;}.about--banner{height:205px;}.about--banner h2{font-size:28px;margin-top:10px;}.about--banner h2::before{top:28px;left:148px;}.about--banner h2::after{top:163px;left:143px;}.about--banner a p{color:#fff;bottom:18px;font-size:12px;text-transform:uppercase;transition:bottom .2s ease-in-out,left .2s ease-in-out;-webkit-transition:bottom .2s ease-in-out,left .2s ease-in-out;}.about--options{flex-direction:column;align-items:flex-start;gap:20px;}.about--options a{flex:1 1 100%;max-width:100%;text-align:left;box-sizing:border-box;}.about--options h2{font-size:1.3rem;}.about--options h3{font-size:1.2rem;margin-bottom:5px;}.about--options p{font-size:10px;margin-bottom:0;}}
+    @media (max-width:600px){.about--banner{height:auto;margin-top:-36px;}.about--banner h2{font-size:28px;margin-top:0;}.about--banner h2::before{top:20px;left:120px;}.about--banner h2::after{top:150px;left:120px;}.about--options h2{font-size:18px;}.about--options h3{font-size:16px;}.about--options p{font-size:12px;}}
+    @media (max-width:480px){.about--banner h2{font-size:1.5rem;}.about--banner a{font-size:12px;padding:8px 10px;}.about--options h3{font-size:1.25rem;}.about--options p{font-size:12px;}}
+    @media(max-width:767px){.hire h2{margin:0px 0px 0px 11px;font-size:1.8rem;text-align:left;}.about--options{margin-top:108px;gap:0px;text-transform:unset;}.about--banner a p{bottom:0px;text-transform:unset;}.about--banner h2{text-align:left;font-size:23px;}.about--banner a{padding:0;margin:0;text-transform:unset;}.about--options h3{font-size:17px;}.about--options h2{font-size:23px;}.work--lockup .slider--next svg{width:13px;}.work--lockup .slider--prev svg{width:13px;}.work--lockup .slider--next{width:31px;height:31px;}.work--lockup .slider--prev{width:31px;height:31px;}.skills-container{margin-top:4px;}.category-title{padding:8px 13px;font-size:14px;font-weight:300;}.skills-columns-container{gap:2px;}.work h2{font-size:1.8rem;}.slider--item-image1 img{height:46px;}.work--lockup .slider--item-center .slider--item-image{width:190px;}.work--lockup .slider--item-center a{font-size:14px;}.work--lockup .slider--item-center p{font-size:12px;}.work--lockup .slider--next{top:77px;}.work--lockup .slider--prev{top:77px;}.into--banner h1{font:size 29px !important;}}
+    
+  </style>
+
 </head>
-<body class="dark">
-  <header class="nav">
-    <div class="container nav-inner">
-      <a class="brand" href="#home">
-        <div class="logo-mark">MS</div>
-        <div>
-          <div class="name">Mahnoor <span>Saeed</span></div>
-          <div class="title-sm">Junior DevOps Engineer</div>
-        </div>
-      </a>
 
-      <nav class="nav-links" id="navLinks">
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#experience">Experience</a>
-        <a href="#contact">Contact</a>
-        <a class="cta" href="Mahnoor_Saeed_DevOps_Resume.pdf" target="_blank" rel="noopener">Download Resume</a>
-        <button id="themeToggle" aria-label="toggle theme">🌗</button>
-      </nav>
+<body>
 
-      <button class="menu-btn" id="menuBtn" aria-label="menu">☰</button>
-    </div>
-  </header>
+  <!-- notification for small viewports and landscape oriented smartphones -->
+  <div class="device-notification">
+    <a class="device-notification--logo" href="#0">
+      <img src="assets/img/logo.png">
+      <p>MAHNOOR SAEED</p>
+    </a>
+  </div>
 
-  <main>
-    <!-- HERO -->
-    <section id="home" class="hero">
-      <div class="container hero-grid">
-        <div class="hero-card">
-          <h1>Hi — I’m <span>Mahnoor Saeed</span></h1>
-          <p class="lead">Junior DevOps Engineer | Azure · Docker · Kubernetes · CI/CD · Terraform</p>
-          <p class="muted">
-            I transitioned from digital marketing to DevOps — blending clear communication with automation-first engineering. I build CI/CD pipelines, containerized apps, and scalable infrastructure.
-          </p>
-
-          <div class="hero-cta">
-            <a href="#projects" class="btn">View Projects</a>
-            <a href="mailto:mahnoor.saeeddevops@@gmail.com" class="btn btn-outline">Contact Me</a>
-          </div>
-
-          <div class="socials">
-            <a href="https://pk.linkedin.com/in/mahnoor-saeed15" target="_blank" rel="noopener">LinkedIn</a>
-            <!-- add other socials if you want -->
-          </div>
-        </div>
-
-        <div class="hero-stats">
-          <div class="card glass">
-            <h4>Skills</h4>
-            <div class="chips">
-              <span>Azure</span><span>Docker</span><span>Kubernetes</span><span>Terraform</span><span>CI/CD</span>
-            </div>
-          </div>
-
-          <div class="card glass">
-            <h4>Profile</h4>
-            <p>Junior DevOps Engineer with hands-on experience in containerization, CI/CD pipelines, and infrastructure-as-code.</p>
-          </div>
-
-          <div class="card glass">
-            <h4>Resume</h4>
-            <a class="small-cta" href="Mahnoor_Saeed_DevOps_Resume.pdf" target="_blank" rel="noopener">Open PDF</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about" class="section">
-      <div class="container">
-        <h2>About Me</h2>
-        <div class="about-grid">
-          <div class="about-text">
-            <p>
-              I’m a detail-oriented professional who moved from digital marketing into DevOps.
-              I bring strong communication and analytical skills (BS in English Literature & Linguistics) plus practical training from the IT Mustakbil program and a DevOps & Serverless specialization.
-            </p>
-            <ul>
-              <li>Collaborated with cross-functional teams and clients.</li>
-              <li>Built automation for testing & deployments using Azure DevOps and GitHub Actions.</li>
-              <li>Delivered containerized applications with Docker and orchestration with Kubernetes.</li>
-            </ul>
-          </div>
-          <div class="about-aside card glass">
-            <h3>Quick facts</h3>
-            <p><strong>Location:</strong> Lahore, Pakistan</p>
-            <p><strong>Email:</strong> mahnoor.saeeddevops@gmail.com</p>
-            <p><strong>Availability:</strong> Open to junior DevOps opportunities</p>
-            <a class="btn" href="#contact">Hire me</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SKILLS -->
-    <section id="skills" class="section section-alt">
-      <div class="container">
-        <h2>Skills</h2>
-        <div class="skills-grid">
-          <div class="skill">
-            <h4>Version Control & CI/CD</h4>
-            <p>Git · GitHub · GitHub Actions · Azure DevOps</p>
-          </div>
-          <div class="skill">
-            <h4>Containerization</h4>
-            <p>Docker · Docker Compose · Kubernetes</p>
-          </div>
-          <div class="skill">
-            <h4>Cloud</h4>
-            <p>Azure (AKS, VMs, Azure DevOps)</p>
-          </div>
-          <div class="skill">
-            <h4>IaC</h4>
-            <p>Terraform (modules, state management, best practices)</p>
-          </div>
-          <div class="skill">
-            <h4>Scripting & OS</h4>
-            <p>Linux · Shell scripting · YAML</p>
-          </div>
-          <div class="skill">
-            <h4>Networking & Security</h4>
-            <p>Load balancing · CI/CD security best practices</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROJECTS -->
-    <section id="projects" class="section">
-      <div class="container">
-        <h2>Selected Projects</h2>
-        <div class="projects-grid">
-          <!-- Project 1 -->
-          <article class="project-card">
-            <div class="thumb" style="background-image:url('https://source.unsplash.com/800x600/?docker,code');"></div>
-            <div class="p-body">
-              <h3>React App — Dockerized</h3>
-              <p>Built and deployed a React application in Docker containers. Wrote Dockerfile(s), built images, and orchestrated with Docker Compose for multi-container setups.</p>
-              <p class="meta">Tech: React · Docker · Docker Compose</p>
-            </div>
-          </article>
-
-          <!-- Project 2 -->
-          <article class="project-card">
-            <div class="thumb" style="background-image:url('https://source.unsplash.com/800x600/?ci,cd');"></div>
-            <div class="p-body">
-              <h3>CI/CD Pipeline — Azure DevOps</h3>
-              <p>Implemented automated pipelines for build, test, and deployment using Azure DevOps integrated with GitHub.</p>
-              <p class="meta">Tech: Azure DevOps · GitHub · YAML</p>
-            </div>
-          </article>
-
-          <!-- Project 3 -->
-          <article class="project-card">
-            <div class="thumb" style="background-image:url('https://source.unsplash.com/800x600/?kubernetes,cluster');"></div>
-            <div class="p-body">
-              <h3>Scalable App Deployment — Kubernetes</h3>
-              <p>Deployed a scalable web application to Kubernetes with pod/service/deployment manifests. Managed scaling and networking in AKS/test clusters.</p>
-              <p class="meta">Tech: Kubernetes · AKS · YAML</p>
-            </div>
-          </article>
-
-          <!-- Project 4 -->
-          <article class="project-card">
-            <div class="thumb" style="background-image:url('https://source.unsplash.com/800x600/?terraform,cloud');"></div>
-            <div class="p-body">
-              <h3>Infrastructure as Code — Terraform</h3>
-              <p>Created reusable Terraform modules to provision Azure infrastructure and handled state with best practices.</p>
-              <p class="meta">Tech: Terraform · Azure</p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- EXPERIENCE -->
-    <section id="experience" class="section section-alt">
-      <div class="container">
-        <h2>Experience</h2>
-        <div class="exp-grid">
-          <div class="exp-item card glass">
-            <h3>Digital Marketing Executive & Content Writer — IREG-IT</h3>
-            <span class="muted">Jan 2023 - Dec 2023</span>
-            <ul>
-              <li>Created 50+ digital content pieces; increased engagement by ~30%.</li>
-              <li>Worked with 10+ web/app projects; collaborated with developers and clients.</li>
-              <li>Gained hands-on understanding of software workflows and teamwork.</li>
-            </ul>
-          </div>
-
-          <div class="exp-item card glass">
-            <h3>Hands-on Projects & Trainings</h3>
-            <ul>
-              <li>React app containerization and Docker Compose</li>
-              <li>Azure DevOps pipelines for automated builds/tests/deployments</li>
-              <li>Kubernetes manifests, deployments, and scaling</li>
-              <li>Terraform modules and state management</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="education row">
-          <div>
-            <h4>Education</h4>
-            <p>BS English Literature & Linguistics — University of Central Punjab (2020 - 2024)</p>
-          </div>
-          <div>
-            <h4>Certifications</h4>
-            <p>IT Mustakbil Program (Systems Limited, Beaconhouse National University) — Aug 2024 - Feb 2025</p>
-            <p>DevOps & Serverless Specialization — covered Git, Linux, Docker, Kubernetes, CI/CD, Azure, Terraform</p>
-            <p>Udemy — Getting Started with Azure</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" class="section">
-      <div class="container">
-        <h2>Contact</h2>
-        <div class="contact-grid">
-          <form class="contact-form" onsubmit="handleContact(event)">
-            <label>
-              <span>Name</span>
-              <input type="text" name="name" required />
-            </label>
-            <label>
-              <span>Email</span>
-              <input type="email" name="email" required value="mahnoor.saeeddevops@gmail.com"/>
-            </label>
-            <label>
-              <span>Message</span>
-              <textarea name="message" rows="6" required></textarea>
-            </label>
-            <div class="form-actions">
-              <button type="submit" class="btn">Send Message</button>
-              <a class="btn btn-outline" href="https://pk.linkedin.com/in/mahnoor-saeed15" target="_blank" rel="noopener">Message on LinkedIn</a>
-            </div>
-            <div id="formResult" class="muted small"></div>
-          </form>
-
-          <aside class="contact-card card glass">
-            <h3>Let's build something</h3>
-            <p>Email: <a href="mailto:mahnoor.saeeddevops@gmail.com">mahnoor.saeeddevops@gmail.com</a></p>
-            <p>LinkedIn: <a href="https://pk.linkedin.com/in/mahnoor-saeed15" target="_blank" rel="noopener">linkedin.com/in/mahnoor-saeed15</a></p>
-            <p>Location: Lahore, Pakistan</p>
-            <div class="skill-badges">
-              <span>Azure</span><span>Docker</span><span>Kubernetes</span><span>Terraform</span>
-            </div>
-          </aside>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
+  <div class="perspective effect-rotate-left">
     <div class="container">
-      <p>© <span id="year"></span> Mahnoor Saeed · Junior DevOps Engineer · Lahore, Pakistan</p>
+      <div class="outer-nav--return"></div>
+      <div id="viewport" class="l-viewport">
+        <div class="l-wrapper">
+          <header class="header">
+            <a class="header--logo" href="#0">
+              
+              <p>DevOps Portfolio</p>
+            </a>
+            <button class="header--cta cta"><a href="" target="_blank" style="color:white;">Lets
+                Connect</a></button>
+            <div class="header--nav-toggle">
+              <span></span>
+            </div>
+          </header>
+          <nav class="l-side-nav">
+            <ul class="side-nav">
+              <li class="is-active"><span>Home</span></li>
+              <li><span>Work <span>Experience</span></span></li>
+              <li><span>About</span></li>
+              <li><span>Contact</span></li>
+              <li><span>Technical <span>Skills</span></span></li>
+            </ul>
+          </nav>
+          <ul class="l-main-content main-content">
+            <li class="l-section section section--is-active">
+              <div class="intro">
+                <div class="intro--banner">
+                  <h1 > MAHNOOR SAEED</h1>
+                  <h2>Associate DevOps Engineer</h2>
+                  <button class="cta"><a href=""target="_blank" style="color:white;">Lets connect</a>
+                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                      xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 150 118"
+                      style="enable-background:new 0 0 150 118;" xml:space="preserve">
+                      <g transform="translate(0.000000,118.000000) scale(0.100000,-0.100000)">
+                        <path
+                          d="M870,1167c-34-17-55-57-46-90c3-15,81-100,194-211l187-185l-565-1c-431,0-571-3-590-13c-55-28-64-94-18-137c21-20,33-20,597-20h575l-192-193C800,103,794,94,849,39c20-20,39-29,61-29c28,0,63,30,298,262c147,144,272,271,279,282c30,51,23,60-219,304C947,1180,926,1196,870,1167z" />
+                      </g>
+                    </svg>
+                    <span class="btn-background"></span>
+                  </button>
+                </div>
+                <div class="intro--options">
+                  <a href="#0">
+                    <h3> Pakistani</h3>
+                    <h3>Lahore, Pakistan</h3>
+                    <h3>mahnoor.saeeddevops@gmail.com</h3>
+                  </a>
+                  <div class="social-links">
+                    <a href="mailto:mahnoor.saeeddevops@gmail.com?subject=Portfolio Inquiry&body=Hello, I would like to inquire about your portfolio."target="_blank">
+                      <i class="fas fa-envelope"></i>
+                      <span>Email</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/mahnoor-saeed15"
+                      target="_blank">
+                      <i class="fab fa-linkedin"></i>
+                      <span>LinkedIn</span>
+                    </a>
+             
+                  </div>
+
+                </div>
+              </div>
+            </li>
+            <li class="l-section section">
+              <div class="work">
+                <h2>Work Experience</h2>
+                <div class="work--lockup">
+                  <ul class="slider">
+                    <li class="slider--item slider--item-center">
+                      <a href="#0">
+                        <div class="slider--item-image1">
+                          <a href="https://www.aetostechnology.com/" target="_blank" rel="noopener noreferrer">
+                            <img src="assets/img/Dev.Ops.png" alt="Mahnoor Saeed">
+                          </a>
+                        </div>
+                        <p class="slider--item-title"><a href="https://www.aetostechnology.com/" target="_blank" rel="noopener noreferrer">Associate DevOps Engineer - Aetos
+                            Technologies</a></p>
+                        <div class="slider--item-details">
+                          <p>
+                            Managing cloud infrastructure on AWS, Azure, and GCP.<br>
+                            Deploying and maintaining Odoo servers.<br>
+                            Optimizing IIS, Azure Sentinel, and CI/CD pipelines.<br>
+                          </p>
+                        </div>
+                        <!-- <p class="slider--item-description"> <ul s>
+                        <li>Managing cloud infrastructure on AWS, Azure, and GCP.</li>
+                        <li>Deploying and maintaining Odoo servers.</li>
+                        <li>Optimizing IIS, Azure Sentinel, and CI/CD pipelines.</li>
+                    </ul></p> -->
+                      </a>
+                    </li>
+                  </ul>
+                  <div class="slider--prev">
+                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                      xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 150 118"
+                      style="enable-background:new 0 0 150 118;" xml:space="preserve">
+                      <g transform="translate(0.000000,118.000000) scale(0.100000,-0.100000)">
+                        <path d="M561,1169C525,1155,10,640,3,612c-3-13,1-36,8-52c8-15,134-145,281-289C527,41,562,10,590,10c22,0,41,9,61,29
+                    c55,55,49,64-163,278L296,510h575c564,0,576,0,597,20c46,43,37,109-18,137c-19,10-159,13-590,13l-565,1l182,180
+                    c101,99,187,188,193,199c16,30,12,57-12,84C631,1174,595,1183,561,1169z" />
+                      </g>
+                    </svg>
+                  </div>
+                  <div class="slider--next">
+                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                      xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 150 118"
+                      style="enable-background:new 0 0 150 118;" xml:space="preserve">
+                      <g transform="translate(0.000000,118.000000) scale(0.100000,-0.100000)">
+                        <path
+                          d="M870,1167c-34-17-55-57-46-90c3-15,81-100,194-211l187-185l-565-1c-431,0-571-3-590-13c-55-28-64-94-18-137c21-20,33-20,597-20h575l-192-193C800,103,794,94,849,39c20-20,39-29,61-29c28,0,63,30,298,262c147,144,272,271,279,282c30,51,23,60-219,304C947,1180,926,1196,870,1167z" />
+                      </g>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="l-section section">
+              <div class="about">
+                <div class="about--banner">
+                  <h2>Education & Certification</h2>
+
+                  <a href="#0">
+                    <p>BS (Hons)</p>
+                    <p><i class="fas fa-university icon"></i> University of Central Punjab (2020 – 2024)</p>
+                    <p><i class="fas fa-globe icon"></i> <a href="https://ucp.edu.pk/">https://ucp.edu.pk/</a></p>
+                  </a>
+                   <a href="#0">
+                    <h3>Certifications</h3>
+                    <p>IT Mustakbil Program – Systems Limited & BNU (Aug 2024 – Feb 2025): OOP,
+DSA, Algorithms, C++, MySQL</p>
+                    <p>Getting Started with Azure – Udemy (Houssem Dellai)</a></p>
+                  </a>
+
+                </div>
+              </div>
+            </li>
+            <li class="l-section section">
+              <div class="contact">
+                <div class="contact--lockup">
+                  <div class="modal">
+                    <div class="modal--information">
+                      <p>Lahore, Pakistan</p>
+                      <a href="mailto:mahnoor.saeeddevops@gmail.com">mahnoor.saeeddevops@gmail.com</a>
+                    </div>
+                    <ul class="modal--options">
+                      <li><a href="#0">Lahore,Pakistan</a></li>
+                      <li><a href=""target="_blank" style="color:white;">Lets connect</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="l-section section">
+              <div class="hire">
+                <h2>Technical Skills</h2>
+                <div class="skills-container">
+                  <!-- Two columns for skills -->
+                  <div class="skills-columns-container">
+                    <!-- First Column -->
+                    <div class="skills-column">
+                      <ul class="skills-main-list">
+                        <li class="skill-category">
+                          <div class="category-title">Soft Skills</div>
+                          <ul class="skills-sub-list">
+                            <li>Collaboration with engineers</li>
+                            <li>Problem-solving and troubleshooting</li>
+                            <li>Communication (English B2, Urdu C2)</li>
+                          </ul>
+                        </li>
+                        <li class="skill-category">
+                          <div class="category-title">DevOps & Automation</div>
+                          <ul class="skills-sub-list">
+                            <li>Git (GitHub, GitLab)</li>
+                            <li>CI/CD Pipelines (GitLab CI/CD)</li>
+                            <li>Infrastructure as Code (IaC) with Terraform</li>
+                            <li>Docker</li>
+                            <li>Jenkins</li>
+                          </ul>
+                        </li>
+                        <li class="skill-category">
+                          <div class="category-title">Programming & Scripting</div>
+                          <ul class="skills-sub-list">
+                            <li>Shell Scripting (for automation & server management)</li>
+                          </ul>
+                        </li>
+                        <li class="skill-category">
+                          <div class="category-title">Cloud & Infrastructure Management</div>
+                          <ul class="skills-sub-list">
+                            <li>AWS (EC2, IAM, S3, etc.)</li>
+                            <li>Azure</li>
+                            <li>Google Cloud Platform (GCP)</li>
+                            <li>Digital Ocean</li>
+                            <li>Hetzner</li>
+                            <li>Contabo</li>
+                            <li>IIS server deployment & management</li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </div>
+            
+                    <!-- Second Column -->
+                    <div class="skills-column">
+                      <ul class="skills-main-list">
+                        <li class="skill-category">
+                          <div class="category-title">Tech Fusion</div>
+                          <ul class="skills-sub-list">
+                            <li>Cloud-Native Security</li>
+                            <li>Infrastructure Automation</li>
+                            <li>Cost Optimization in Cloud</li>
+                          </ul>
+                        </li>
+                        <li class="skill-category">
+                          <div class="category-title">Security & Monitoring</div>
+                          <ul class="skills-sub-list">
+                            <li>Azure Sentinel (Security Monitoring)</li>
+                            <li>Zero Trust Security Model</li>
+                            <li>Mail Server Security</li>
+                          </ul>
+                        </li>
+                        <li class="skill-category">
+                          <div class="category-title">Web & Application Deployment</div>
+                          <ul class="skills-sub-list">
+                            <li>Web Servers (IIS, Apache, NGINX)</li>
+                            <li>Odoo System & Database Management</li>
+                            <li>Experience in ERP and CRM systems</li>
+                          </ul>
+                        </li>
+                        <li class="skill-category">
+                          <div class="category-title">Operating Systems & Administration</div>
+                          <ul class="skills-sub-list">
+                            <li>Linux Server Administration (Ubuntu, CentOS)</li>
+                            <li>Windows Server Management</li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
-  </footer>
+    <ul class="outer-nav">
+      <li class="is-active">Home</li>
+      <li>Works</li>
+      <li>About</li>
+      <li>Contact</li>
+      <li>Technical Skills</li>
+    </ul>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery-2.2.4.min.js"><\/script>')</script>
+  <script src="assets/js/functions-min.js"></script>
+  <script>
+    // For click functionality (uncomment if you prefer click over hover)
+    /*
+    document.querySelectorAll('.skill-category').forEach(item => {
+      item.addEventListener('click', function() {
+        this.classList.toggle('active');
+      });
+    });
+    */
+  </script>
 </body>
+
 </html>
