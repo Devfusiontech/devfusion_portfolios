@@ -90,7 +90,7 @@ jobs:
 
       - name: Merge staging into portfolio and push
         env:
-          SSH_KEY: ${{ secrets.devfusion }}
+          SSH_KEY: ${{ secrets.DEVFUSION }}
         run: |
           mkdir -p ~/.ssh
           echo "$SSH_KEY" > ~/.ssh/id_rsa
@@ -107,7 +107,7 @@ jobs:
 
       - name: Deploy → Pull + Restart containers
         env:
-          SSH_KEY: ${{ secrets.devfusion }}
+          SSH_KEY: ${{ secrets.DEVFUSION }}
           SERVER_IP: 144.91.124.246
         run: |
           mkdir -p ~/.ssh
