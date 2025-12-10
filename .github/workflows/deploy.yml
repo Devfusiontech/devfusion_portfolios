@@ -1,5 +1,5 @@
 # File: .github/workflows/deploy-portfolio.yml
-name: Auto Merge + Deploy (Force Overwrite – No Conflicts)
+name: Auto Merge + Deploy (Force Overwrite)
 
 on:
   push:
@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     if: endsWith(github.ref_name, '_staging')
     permissions:
-      contents: write          # ← This gives the bot permission to push
+      contents: write                     # Allows pushing to repo
 
     steps:
       - name: Checkout repository
@@ -22,33 +22,84 @@ jobs:
       - name: Set branch / folder / container mapping
         id: map
         run: |
-          case ${{ github.ref_name }} in
-            abdullah_staging)  echo "main=abdullah_portfolio" >> $GITHUB_OUTPUT; echo "folder=abdullah_site" >> $GITHUB_OUTPUT; echo "container=abdullah-site" >> $GITHUB_OUTPUT ;;
-            imran_staging)     echo "main=imran_portfolio"    >> $GITHUB_OUTPUT; echo "folder=imran_site"    >> $GITHUB_OUTPUT; echo "container=imran-site"    " >> $GITHUB_OUTPUT ;;
-            kmisbah_staging)   echo "main=kmisbah_portfolio"  >> $GITHUB_OUTPUT; echo "folder=kmisbah"        >> $GITHUB_OUTPUT; echo "container=kmisbah-site"  >> $GITHUB_OUTPUT ;;
-            mahnoor_staging)   echo "main=mahnoor_portfolio"  >> $GITHUB_OUTPUT; echo "folder=mahnoor_site"  >> $GITHUB_OUTPUT; echo "container=mahnoor-site"  >> $GITHUB_OUTPUT ;;
-            maria_staging)     echo "main=maria_portfolio"    >> $GITHUB_OUTPUT; echo "folder=maria_site"    >> $GITHUB_OUTPUT; echo "container=maria-site"    >> $GITHUB_OUTPUT ;;
-            misbah_staging)    echo "main=misbah_portfolio"   >> $GITHUB_OUTPUT; echo "folder=misbah_site"   >> $GITHUB_OUTPUT; echo "container=misbah-site"   >> $GITHUB_OUTPUT ;;
-            nouman_staging)    echo "main=nouman_portfolio"   >> $GITHUB_OUTPUT; echo "folder=nouman_site"   >> $GITHUB_OUTPUT; echo "container=nouman-site"   >> $GITHUB_OUTPUT ;;
-            rehan_staging)     echo "main=rehan_portfolio"    >> $GITHUB_OUTPUT; echo "folder=rehan_site"    >> $GITHUB_OUTPUT; echo "container=rehan-site"    >> $GITHUB_OUTPUT ;;
-            sidra_staging)     echo "main=sidra_portfolio"    >> $GITHUB_OUTPUT; echo "folder=sidra_site"    >> $GITHUB_OUTPUT; echo "container=sidra-site"    >> $GITHUB_OUTPUT ;;
-            salma_staging)     echo "main=salma_portfolio"    >> $GITHUB_OUTPUT; echo "folder=salma_site"    >> $GITHUB_OUTPUT; echo "container=salma-site"    >> $GITHUB_OUTPUT ;;
-            talal_staging)     echo "main=talal_portfolio"    >> $GITHUB_OUTPUT; echo "folder=talal_site"    >> $GITHUB_OUTPUT; echo "container=talal-site"    >> $GITHUB_OUTPUT ;;
-            zahra_staging)     echo "main=zahra_portfolio"    >> $GITHUB_OUTPUT; echo "folder=zahra_site"    >> $GITHUB_OUTPUT; echo "container=zahra-site"    >> $GITHUB_OUTPUT ;;
-            *) echo "Unknown branch"; exit 1 ;;
+          case ${{ github.ref_name in
+            abdullah_staging)
+              echo "main=abdullah_portfolio" >> $GITHUB_OUTPUT
+              echo "folder=abdullah_site"     >> $GITHUB_OUTPUT
+              echo "container=abdullah-site"  >> $GITHUB_OUTPUT
+              ;;
+            imran_staging)
+              echo "main=imran_portfolio"     >> $GITHUB_OUTPUT
+              echo "folder=imran_site"        >> $GITHUB_OUTPUT
+              echo "container=imran-site"     >> $GITHUB_OUTPUT
+              ;;
+            kmisbah_staging)
+              echo "main=kmisbah_portfolio"    >> $GITHUB_OUTPUT
+              echo "folder=kmisbah"           >> $GITHUB_OUTPUT
+              echo "container=kmisbah-site"   >> $GITHUB_OUTPUT
+              ;;
+            mahnoor_staging)
+              echo "main=mahnoor_portfolio"   >> $GITHUB_OUTPUT
+              echo "folder=mahnoor_site"      >> $GITHUB_OUTPUT
+              echo "container=mahnoor-site"   >> $GITHUB_OUTPUT
+              ;;
+            maria_staging)
+              echo "main=maria_portfolio"     >> $GITHUB_OUTPUT
+              echo "folder=maria_site"        >> $GITHUB_OUTPUT
+              echo "container=maria-site"     >> $GITHUB_OUTPUT
+              ;;
+            misbah_staging)
+              echo "main=misbah_portfolio"    >> $GITHUB_OUTPUT
+              echo "folder=misbah_site"     >> $GITHUB_OUTPUT
+              echo "container=misbah-site"    >> $GITHUB_OUTPUT
+              ;;
+            nouman_staging)
+              echo "main=nouman_portfolio"    >> $GITHUB_OUTPUT
+              echo "folder=nouman_site"       >> $GITHUB_OUTPUT
+              echo "container=nouman-site"    >> $GITHUB_OUTPUT
+              ;;
+            rehan_staging)
+              echo "main=rehan_portfolio"     >> $GITHUB_OUTPUT
+              echo "folder=rehan_site"        >> $GITHUB_OUTPUT
+              echo "container=rehan-site"     >> $GITHUB_OUTPUT
+              ;;
+            sidra_staging)
+              echo "main=sidra_portfolio"     >> $GITHUB_OUTPUT
+              echo "folder=sidra_site"        >> $GITHUB_OUTPUT
+              echo "container=sidra-site"     >> $GITHUB_OUTPUT
+              ;;
+            salma_staging)
+              echo "main=salma_portfolio"     >> $GITHUB_OUTPUT
+              echo "folder=salma_site"        >> $GITHUB_OUTPUT
+              echo "container=salma-site"     >> $GITHUB_OUTPUT
+              ;;
+            talal_staging)
+              echo "main=talal_portfolio"     >> $GITHUB_OUTPUT
+              echo "folder=talal_site"        >> $GITHUB_OUTPUT
+              echo "container=talal-site"     >> $GITHUB_OUTPUT
+              ;;
+            zahra_staging)
+              echo "main=zahra_portfolio"     >> $GITHUB_OUTPUT
+              echo "folder=zahra_site"        >> $GITHUB_OUTPUT
+              echo "container=zahra-site"     >> $GITHUB_OUTPUT
+              ;;
+            *)
+              echo "Unknown branch"
+              exit 1
+              ;;
           esac
 
-      - name: Force overwrite portfolio branch (using SSH)
+      # ← this was the missing piece!
+
+      - name: Force overwrite portfolio branch using SSH
         env:
-          GIT_SSH_COMMAND: "ssh -i /root/.ssh/id_rsa"   # will use the key we create below
+          SSH_KEY: ${{ secrets.devfusion }}
         run: |
-          # Create SSH key from secret so we can push
           mkdir -p ~/.ssh
-          echo "${{ secrets.devfusion }}" > ~/.ssh/id_rsa
+          echo "$SSH_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan github.com >> ~/.ssh/known_hosts 2>/dev/null
 
-          # Use SSH URL instead of HTTPS
           git remote set-url origin git@github.com:${{ github.repository }}.git
 
           git fetch origin
@@ -56,7 +107,7 @@ jobs:
           git reset --hard origin/${{ github.ref_name }}
           git push --force-with-lease origin ${{ steps.map.outputs.main }}
 
-      - name: Deploy → Pull code + Restart containers
+      - name: Deploy → Pull + Restart containers
         env:
           SSH_KEY: ${{ secrets.devfusion }}
           SERVER_IP: 144.91.124.246
@@ -72,11 +123,11 @@ jobs:
             git reset --hard origin/${{ steps.map.outputs.main }}
             git clean -fdx
 
-            echo "Restarting site container: ${{ steps.map.outputs.container }}"
+            echo "Restarting ${{ steps.map.outputs.container }}"
             docker restart ${{ steps.map.outputs.container }} || true
 
             echo "Restarting ReverseProxy..."
             docker restart ReverseProxy || true
 
-            echo "Deployed ${{ steps.map.outputs.folder }} successfully!"
+            echo "Deployed ${{ steps.map.outputs.folder }} – Done!"
           EOF
