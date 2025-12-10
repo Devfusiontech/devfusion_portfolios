@@ -63,7 +63,7 @@ jobs:
 
           git push origin ${{ steps.map.outputs.main }}
 
-      - name: Deploy to Production Server
+      - name: Deploy to Production Server – Final Working Version
         env:
           SSH_KEY: ${{ secrets.DEVFUSION }}
         run: |
@@ -75,22 +75,20 @@ jobs:
           ssh -i ~/.ssh/github_id -o StrictHostKeyChecking=no root@144.91.124.246 << 'EOF'
             cd /var/www/html/${{ steps.map.outputs.folder }} || exit 1
             
-            echo "Stopping container to release file locks..."
+            # Stop container → releases file locks + clears any volume cache
             docker stop ${{ steps.map.outputs.container }} || true
             
             git fetch --all
             git reset --hard origin/${{ steps.map.outputs.main }}
             git clean -fdx
             
-            # Fix ownership after reset
+            # Fix permissions
             chown -R www-data:www-data .
             chmod -R 755 .
-            find . -type f -exec chmod 644 {} \; || true
             
-            echo "Starting container again..."
+            # Restart container + reverse proxy
             docker start ${{ steps.map.outputs.container }} || docker restart ${{ steps.map.outputs.container }}
-            
             docker restart ReverseProxy || true
             
-            echo "Deployed ${{ steps.map.outputs.folder }} – Changes are LIVE now!"
+            echo "Deployed + container restarted – changes are LIVE!"
           EOF
