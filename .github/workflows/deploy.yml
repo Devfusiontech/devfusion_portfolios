@@ -96,20 +96,13 @@ jobs:
           echo "$SSH_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan github.com >> ~/.ssh/known_hosts 2>/dev/null
-
           git remote set-url origin git@github.com:${{ github.repository }}.git
           git fetch origin
-
-          # Configure git committer for CI
           git config --global user.email "actions@github.com"
           git config --global user.name "GitHub Actions"
-
-          # Checkout portfolio branch
           git checkout ${{ steps.map.outputs.main }} || git checkout -b ${{ steps.map.outputs.main }} origin/${{ steps.map.outputs.main }}
           git pull origin ${{ steps.map.outputs.main }}
-
-          # Merge staging branch into portfolio branch automatically favoring staging changes
-          git merge -X theirs origin/${{ github.ref_name }} --no-ff -m "Merge ${{ github.ref_name }} into ${{ steps.map.outputs.main }}"
+          git merge origin/${{ github.ref_name }} --no-ff -m "Merge ${{ github.ref_name }} into ${{ steps.map.outputs.main }}"
           git push origin ${{ steps.map.outputs.main }}
 
       - name: Deploy → Pull + Restart containers
@@ -121,19 +114,15 @@ jobs:
           echo "$SSH_KEY" > ~/.ssh/temp_key
           chmod 600 ~/.ssh/temp_key
           ssh-keyscan -H $SERVER_IP >> ~/.ssh/known_hosts 2>/dev/null
-
-          ssh -i ~/.ssh/temp_key -o IdentitiesOnly=yes root@$SERVER_IP << 'EOF'
-            cd /var/www/html/${{ steps.map.outputs.folder }} || exit 1
-            git fetch --all
-            git checkout ${{ steps.map.outputs.main }} || git checkout -b ${{ steps.map.outputs.main }} origin/${{ steps.map.outputs.main }}
-            git reset --hard origin/${{ steps.map.outputs.main }}
-            git clean -fdx
-
-            echo "Restarting ${{ steps.map.outputs.container }}"
-            docker restart ${{ steps.map.outputs.container }} || true
-
-            echo "Restarting ReverseProxy..."
-            docker restart ReverseProxy || true
-
-            echo "Deployed ${{ steps.map.outputs.folder }} – Done!"
+          ssh -i ~/.ssh/temp_key -o IdentitiesOnly=yes root@$SERVER_IP bash <<EOF
+          cd /var/www/html/${{ steps.map.outputs.folder }} || exit 1
+          git fetch --all
+          git checkout ${{ steps.map.outputs.main }} || git checkout -b ${{ steps.map.outputs.main }} origin/${{ steps.map.outputs.main }}
+          git reset --hard origin/${{ steps.map.outputs.main }}
+          git clean -fdx
+          echo "Restarting ${{ steps.map.outputs.container }}"
+          docker restart ${{ steps.map.outputs.container }} || true
+          echo "Restarting ReverseProxy..."
+          docker restart ReverseProxy || true
+          echo "Deployed ${{ steps.map.outputs.folder }} – Done!" 
           EOF
