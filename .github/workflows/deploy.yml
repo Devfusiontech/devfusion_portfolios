@@ -89,13 +89,13 @@ jobs:
           esac
 
       - name: Merge staging into portfolio and push
-        env:
-          SSH_KEY: ${{ secrets.DEVFUSION }}
         run: |
           mkdir -p ~/.ssh
-          echo "$SSH_KEY" > ~/.ssh/id_rsa
+          # Use the explicit SSH key already present on runner
+          cp ~/.ssh/github_id ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan github.com >> ~/.ssh/known_hosts 2>/dev/null
+
           git remote set-url origin git@github.com:${{ github.repository }}.git
           git fetch origin
           git config --global user.email "actions@github.com"
@@ -107,11 +107,11 @@ jobs:
 
       - name: Deploy → Pull + Restart containers
         env:
-          SSH_KEY: ${{ secrets.DEVFUSION }}
           SERVER_IP: 144.91.124.246
         run: |
           mkdir -p ~/.ssh
-          echo "$SSH_KEY" > ~/.ssh/temp_key
+          # Use the explicit SSH key
+          cp ~/.ssh/github_id ~/.ssh/temp_key
           chmod 600 ~/.ssh/temp_key
           ssh-keyscan -H $SERVER_IP >> ~/.ssh/known_hosts 2>/dev/null
           ssh -i ~/.ssh/temp_key -o IdentitiesOnly=yes root@$SERVER_IP bash <<EOF
@@ -124,5 +124,5 @@ jobs:
           docker restart ${{ steps.map.outputs.container }} || true
           echo "Restarting ReverseProxy..."
           docker restart ReverseProxy || true
-          echo "Deployed ${{ steps.map.outputs.folder }} – Done!" 
+          echo "Deployed ${{ steps.map.outputs.folder }} – Done!"
           EOF
