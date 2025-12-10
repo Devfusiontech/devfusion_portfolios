@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     if: endsWith(github.ref_name, '_staging')
     permissions:
-      contents: write                     # Allows pushing to repo
+      contents: write
 
     steps:
       - name: Checkout repository
@@ -88,7 +88,7 @@ jobs:
               ;;
           esac
 
-      - name: Force overwrite portfolio branch using SSH
+      - name: Merge staging into portfolio and push
         env:
           SSH_KEY: ${{ secrets.devfusion }}
         run: |
@@ -98,13 +98,15 @@ jobs:
           ssh-keyscan github.com >> ~/.ssh/known_hosts 2>/dev/null
 
           git remote set-url origin git@github.com:${{ github.repository }}.git
-
-          # Checkout portfolio branch and reset to its own remote
           git fetch origin
+
+          # Checkout portfolio branch
           git checkout ${{ steps.map.outputs.main }} || git checkout -b ${{ steps.map.outputs.main }} origin/${{ steps.map.outputs.main }}
-          git reset --hard origin/${{ steps.map.outputs.main }}
-          git clean -fdx
-          git push --force-with-lease origin ${{ steps.map.outputs.main }}
+          git pull origin ${{ steps.map.outputs.main }}
+
+          # Merge staging branch into portfolio branch
+          git merge origin/${{ github.ref_name }} --no-ff -m "Merge ${{ github.ref_name }} into ${{ steps.map.outputs.main }}"
+          git push origin ${{ steps.map.outputs.main }}
 
       - name: Deploy → Pull + Restart containers
         env:
