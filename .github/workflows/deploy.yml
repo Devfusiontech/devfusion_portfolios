@@ -84,3 +84,4 @@ docker restart ReverseProxy || true
 
 echo "Deployment complete for ${{ steps.map.outputs.folder }}"
 EOF
+
