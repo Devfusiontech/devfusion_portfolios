@@ -16,25 +16,39 @@ jobs:
       - name: Set branch / folder / container mapping
         id: map
         run: |
-          case "${GITHUB_REF_NAME}" in
-            abdullah_staging)
-              echo "folder=abdullah_site"     >> $GITHUB_OUTPUT
-              echo "container=abdullah-site"  >> $GITHUB_OUTPUT
-              echo "staging_branch=abdullah_staging" >> $GITHUB_OUTPUT
-              echo "portfolio_branch=abdullah_portfolio" >> $GITHUB_OUTPUT
-              ;;
-            imran_staging)
-              echo "folder=imran_site"        >> $GITHUB_OUTPUT
-              echo "container=imran-site"     >> $GITHUB_OUTPUT
-              echo "staging_branch=imran_staging" >> $GITHUB_OUTPUT
-              echo "portfolio_branch=imran_portfolio" >> $GITHUB_OUTPUT
-              ;;
-            # Add other employees similarly...
-            *)
-              echo "Unknown branch: ${GITHUB_REF_NAME}"
-              exit 1
-              ;;
-          esac
+          EMPLOYEES=(
+            "abdullah_staging abdullah_portfolio abdullah_site abdullah-site"
+            "imran_staging imran_portfolio imran_site imran-site"
+            "kmisbah_staging kmisbah_portfolio kmisbah kmisbah-site"
+            "mahnoor_staging mahnoor_portfolio mahnoor_site mahnoor-site"
+            "maria_staging maria_portfolio maria_site maria-site"
+            "misbah_staging misbah_portfolio misbah_site misbah-site"
+            "nouman_staging nouman_portfolio nouman_site nouman-site"
+            "rehan_staging rehan_portfolio rehan_site rehan-site"
+            "sidra_staging sidra_portfolio sidra_site sidra-site"
+            "salma_staging salma_portfolio salma_site salma-site"
+            "talal_staging talal_portfolio talal_site talal-site"
+            "zahra_staging zahra_portfolio zahra_site zahra-site"
+          )
+
+          for e in "${EMPLOYEES[@]}"; do
+            set -- $e
+            STAGING=$1
+            PORTFOLIO=$2
+            FOLDER=$3
+            CONTAINER=$4
+
+            if [ "${GITHUB_REF_NAME}" = "$STAGING" ]; then
+              echo "staging_branch=$STAGING" >> $GITHUB_OUTPUT
+              echo "portfolio_branch=$PORTFOLIO" >> $GITHUB_OUTPUT
+              echo "folder=$FOLDER" >> $GITHUB_OUTPUT
+              echo "container=$CONTAINER" >> $GITHUB_OUTPUT
+              exit 0
+            fi
+          done
+
+          echo "Unknown branch: ${GITHUB_REF_NAME}"
+          exit 1
 
       - name: Deploy → Merge & Restart on Server
         env:
@@ -46,29 +60,27 @@ jobs:
           chmod 600 ~/.ssh/temp_key
           ssh-keyscan -H $SERVER_IP >> ~/.ssh/known_hosts 2>/dev/null
 
-          ssh -i ~/.ssh/temp_key -o IdentitiesOnly=yes root@$SERVER_IP << EOF
-            set -e
+          ssh -i ~/.ssh/temp_key -o IdentitiesOnly=yes root@$SERVER_IP bash <<EOF
+cd /var/www/html/${{ steps.map.outputs.folder }} || exit 1
 
-            cd /var/www/html/${{ steps.map.outputs.folder }} || exit 1
+# Fetch latest changes
+git fetch origin
 
-            # Fetch latest changes
-            git fetch origin
+# Checkout portfolio branch
+git checkout ${{ steps.map.outputs.portfolio_branch }} || git checkout -b ${{ steps.map.outputs.portfolio_branch }} origin/${{ steps.map.outputs.portfolio_branch }}
 
-            # Checkout portfolio branch
-            git checkout ${{ steps.map.outputs.portfolio_branch }} || git checkout -b ${{ steps.map.outputs.portfolio_branch }} origin/${{ steps.map.outputs.portfolio_branch }}
+# Merge staging branch into portfolio, preferring staging changes
+git merge -X theirs origin/${{ steps.map.outputs.staging_branch }} -m "Merge staging into portfolio"
 
-            # Merge staging branch into portfolio, preferring staging changes
-            git merge -X theirs origin/${{ steps.map.outputs.staging_branch }} -m "Merge staging into portfolio"
+# Reset and clean to ensure working folder matches branch
+git reset --hard HEAD
+git clean -fdx
 
-            # Reset and clean to ensure working folder matches branch
-            git reset --hard HEAD
-            git clean -fdx
+echo "Restarting container ${{ steps.map.outputs.container }}"
+docker restart ${{ steps.map.outputs.container }} || true
 
-            echo "Restarting container ${{ steps.map.outputs.container }}"
-            docker restart ${{ steps.map.outputs.container }} || true
+echo "Restarting ReverseProxy..."
+docker restart ReverseProxy || true
 
-            echo "Restarting ReverseProxy..."
-            docker restart ReverseProxy || true
-
-            echo "Deployment complete for ${{ steps.map.outputs.folder }}"
+echo "Deployment complete for ${{ steps.map.outputs.folder }}"
 EOF
