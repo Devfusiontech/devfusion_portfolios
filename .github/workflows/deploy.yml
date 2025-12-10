@@ -1,4 +1,3 @@
-# File: .github/workflows/deploy-portfolio.yml
 name: Auto Merge + Deploy (Force Overwrite)
 
 on:
@@ -21,8 +20,10 @@ jobs:
 
       - name: Set branch / folder / container mapping
         id: map
+        env:
+          BRANCH: ${{ github.ref_name }}
         run: |
-          case ${{ github.ref_name in
+          case "$BRANCH" in
             abdullah_staging)
               echo "main=abdullah_portfolio" >> $GITHUB_OUTPUT
               echo "folder=abdullah_site"     >> $GITHUB_OUTPUT
@@ -50,7 +51,7 @@ jobs:
               ;;
             misbah_staging)
               echo "main=misbah_portfolio"    >> $GITHUB_OUTPUT
-              echo "folder=misbah_site"     >> $GITHUB_OUTPUT
+              echo "folder=misbah_site"       >> $GITHUB_OUTPUT
               echo "container=misbah-site"    >> $GITHUB_OUTPUT
               ;;
             nouman_staging)
@@ -84,7 +85,7 @@ jobs:
               echo "container=zahra-site"     >> $GITHUB_OUTPUT
               ;;
             *)
-              echo "Unknown branch"
+              echo "Unknown branch: $BRANCH"
               exit 1
               ;;
           esac
