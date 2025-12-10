@@ -1,43 +1,94 @@
-
-name: Deploy to Azure Production
+name: Auto Merge + Deploy (Force Overwrite)
 
 on:
   push:
     branches:
-      - main  # Trigger deployment on push to main branch
+      - '*_staging'
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    if: endsWith(github.ref_name, '_staging')
+    permissions:
+      contents: write
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Setup SSH Agent
-        uses: webfactory/ssh-agent@v0.9.0
         with:
-          ssh-private-key: ${{ secrets.PRODUCTION_SSH_KEY }}
+          fetch-depth: 0
 
-      - name: Verify SSH key setup
+      - name: Set branch / folder / container mapping
+        id: map
         run: |
-          echo "Checking SSH key fingerprint..."
-          ssh-add -l || echo "No keys added!"
+          case "${{ github.ref_name }}" in
+            abdullah_staging)  echo "main=abdullah_portfolio" >> $GITHUB_OUTPUT; echo "folder=abdullah_site" >> $GITHUB_OUTPUT; echo "container=abdullah-site" >> $GITHUB_OUTPUT ;;
+            imran_staging)     echo "main=imran_portfolio" >> $GITHUB_OUTPUT;    echo "folder=imran_site" >> $GITHUB_OUTPUT;    echo "container=imran-site" >> $GITHUB_OUTPUT ;;
+            kmisbah_staging)   echo "main=kmisbah_portfolio" >> $GITHUB_OUTPUT;  echo "folder=kmisbah" >> $GITHUB_OUTPUT;      echo "container=kmisbah-site" >> $GITHUB_OUTPUT ;;
+            mahnoor_staging)   echo "main=mahnoor_portfolio" >> $GITHUB_OUTPUT;  echo "folder=mahnoor_site" >> $GITHUB_OUTPUT; echo "container=mahnoor-site" >> $GITHUB_OUTPUT ;;
+            maria_staging)     echo "main=maria_portfolio" >> $GITHUB_OUTPUT;    echo "folder=maria_site" >> $GITHUB_OUTPUT;   echo "container=maria-site" >> $GITHUB_OUTPUT ;;
+            misbah_staging)    echo "main=misbah_portfolio" >> $GITHUB_OUTPUT;   echo "folder=misbah_site" >> $GITHUB_OUTPUT;  echo "container=misbah-site" >> $GITHUB_OUTPUT ;;
+            nouman_staging)    echo "main=nouman_portfolio" >> $GITHUB_OUTPUT;   echo "folder=nouman_site" >> $GITHUB_OUTPUT;  echo "container=nouman-site" >> $GITHUB_OUTPUT ;;
+            rehan_staging)     echo "main=rehan_portfolio" >> $GITHUB_OUTPUT;    echo "folder=rehan_site" >> $GITHUB_OUTPUT;   echo "container=rehan-site" >> $GITHUB_OUTPUT ;;
+            sidra_staging)     echo "main=sidra_portfolio" >> $GITHUB_OUTPUT;  echo "folder=sidra_site" >> $GITHUB_OUTPUT;   echo "container=sidra-site" >> $GITHUB_OUTPUT ;;
+            salma_staging)     echo "main=salma_portfolio" >> $GITHUB_OUTPUT;    echo "folder=salma_site" >> $GITHUB_OUTPUT;   echo "container=salma-site" >> $GITHUB_OUTPUT ;;
+            talal_staging)     echo "main=talal_portfolio" >> $GITHUB_OUTPUT;    echo "folder=talal_site" >> $GITHUB_OUTPUT;   echo "container=talal-site" >> $GITHUB_OUTPUT ;;
+            zahra_staging)     echo "main=zahra_portfolio" >> $GITHUB_OUTPUT;    echo "folder=zahra_site" >> $GITHUB_OUTPUT;   echo "container=zahra-site" >> $GITHUB_OUTPUT ;;
+            *) echo "Unknown branch"; exit 1 ;;
+          esac
 
-      - name: Add Azure VM to known hosts
+      - name: Setup SSH key (github_id)
+        env:
+          SSH_KEY: ${{ secrets.DEVFUSION }}
         run: |
           mkdir -p ~/.ssh
-          chmod 700 ~/.ssh
-          echo "Adding host key for 98.70.32.226"
-          ssh-keyscan -T 30 -p 2222 98.70.32.226 >> ~/.ssh/known_hosts 2>/dev/null
-          echo "Known hosts added successfully."
+          echo "$SSH_KEY" > ~/.ssh/github_id
+          chmod 600 ~/.ssh/github_id
+          ssh-keyscan github.com >> ~/.ssh/known_hosts 2>/dev/null
 
-      - name: Test SSH Connection
+      - name: Merge staging → portfolio and push to GitHub
+        env:
+          SSH_KEY: ${{ secrets.DEVFUSION }}
         run: |
-          echo "Testing SSH connection to mahnoor@98.70.32.226..."
-          ssh -p 2222 -o StrictHostKeyChecking=no mahnoor@98.70.32.226 "echo '✅ SSH connection successful!'"
+          export GIT_SSH_COMMAND="ssh -i ~/.ssh/github_id -o IdentitiesOnly=yes -F /dev/null"
 
-      - name: Deploy to Azure VM
+          git remote set-url origin git@github.com:${{ github.repository }}.git
+          git fetch --all
+
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions"
+
+          git checkout ${{ steps.map.outputs.main }} || git checkout -b ${{ steps.map.outputs.main }}
+          git merge origin/${{ github.ref_name }} --no-ff -m "Auto-merge ${{ github.ref_name }} into ${{ steps.map.outputs.main }}"
+
+          git push origin ${{ steps.map.outputs.main }}
+
+      - name: Deploy to Production Server – Final Working Version
+        env:
+          SSH_KEY: ${{ secrets.DEVFUSION }}
         run: |
-          echo "Starting deployment on Azure VM..."
-          ssh -p 2222 -o StrictHostKeyChecking=no mahnoor@98.70.32.226 "bash ~/my-website/deploy.sh"
+          mkdir -p ~/.ssh
+          echo "$SSH_KEY" > ~/.ssh/github_id
+          chmod 600 ~/.ssh/github_id
+          ssh-keyscan -H 144.91.124.246 >> ~/.ssh/known_hosts 2>/dev/null
+
+          ssh -i ~/.ssh/github_id -o StrictHostKeyChecking=no root@144.91.124.246 << 'EOF'
+            cd /var/www/html/${{ steps.map.outputs.folder }} || exit 1
+            
+            # Stop container → releases file locks + clears any volume cache
+            docker stop ${{ steps.map.outputs.container }} || true
+            
+            git fetch --all
+            git reset --hard origin/${{ steps.map.outputs.main }}
+            git clean -fdx
+            
+            # Fix permissions
+            chown -R www-data:www-data .
+            chmod -R 755 .
+            
+            # Restart container + reverse proxy
+            docker start ${{ steps.map.outputs.container }} || docker restart ${{ steps.map.outputs.container }}
+            docker restart ReverseProxy || true
+            
+            echo "Deployed + container restarted – changes are LIVE!"
+          EOF
