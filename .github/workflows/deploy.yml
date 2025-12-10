@@ -90,18 +90,20 @@ jobs:
 
       - name: Merge staging into portfolio and push
         env:
-          SSH_KEY: ${{ secrets.DEVFUSION }}          # Your existing secret
+          SSH_KEY: ${{ secrets.DEVFUSION }}
         run: |
           mkdir -p ~/.ssh
-          echo "$SSH_KEY" > ~/.ssh/github_id         # Create the key file
+          echo "$SSH_KEY" > ~/.ssh/github_id
           chmod 600 ~/.ssh/github_id
           ssh-keyscan github.com >> ~/.ssh/known_hosts 2>/dev/null
 
-          # Tell Git to use this exact key
           export GIT_SSH_COMMAND="ssh -i ~/.ssh/github_id -o IdentitiesOnly=yes"
 
           git remote set-url origin git@github.com:${{ github.repository }}.git
-          git fetch origin --all
+
+          # THIS IS THE FIXED LINE THAT WAS WRONG → FIXED BELOW
+          git fetch --all                  # Correct: no "origin" when using --all
+          # or you can also just do: git fetch origin
 
           git config user.email "actions@github.com"
           git config user.name "GitHub Actions"
@@ -111,7 +113,7 @@ jobs:
 
           git merge origin/${{ github.ref_name }} --no-ff -m "Merge ${{ github.ref_name }} into ${{ steps.map.outputs.main }}"
 
-          git push origin ${{ steps.map.outputs.main }}:refs/heads/${{ steps.map.outputs.main }}
+          git push origin ${{ steps.map.outputs.main }}
 
       - name: Deploy → Pull + Restart containers
         env:
