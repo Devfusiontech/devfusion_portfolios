@@ -20,10 +20,8 @@ jobs:
 
       - name: Set branch / folder / container mapping
         id: map
-        env:
-          BRANCH: ${{ github.ref_name }}
         run: |
-          case "$BRANCH" in
+          case "${GITHUB_REF_NAME}" in
             abdullah_staging)
               echo "main=abdullah_portfolio" >> $GITHUB_OUTPUT
               echo "folder=abdullah_site"     >> $GITHUB_OUTPUT
@@ -85,12 +83,10 @@ jobs:
               echo "container=zahra-site"     >> $GITHUB_OUTPUT
               ;;
             *)
-              echo "Unknown branch: $BRANCH"
+              echo "Unknown branch: ${GITHUB_REF_NAME}"
               exit 1
               ;;
           esac
-
-      # ← this was the missing piece!
 
       - name: Force overwrite portfolio branch using SSH
         env:
@@ -103,9 +99,11 @@ jobs:
 
           git remote set-url origin git@github.com:${{ github.repository }}.git
 
+          # Checkout portfolio branch and reset to its own remote
           git fetch origin
-          git checkout ${{ steps.map.outputs.main }} || git checkout -b ${{ steps.map.outputs.main }}
-          git reset --hard origin/${{ github.ref_name }}
+          git checkout ${{ steps.map.outputs.main }} || git checkout -b ${{ steps.map.outputs.main }} origin/${{ steps.map.outputs.main }}
+          git reset --hard origin/${{ steps.map.outputs.main }}
+          git clean -fdx
           git push --force-with-lease origin ${{ steps.map.outputs.main }}
 
       - name: Deploy → Pull + Restart containers
@@ -121,6 +119,7 @@ jobs:
           ssh -i ~/.ssh/temp_key -o IdentitiesOnly=yes root@$SERVER_IP << 'EOF'
             cd /var/www/html/${{ steps.map.outputs.folder }} || exit 1
             git fetch --all
+            git checkout ${{ steps.map.outputs.main }} || git checkout -b ${{ steps.map.outputs.main }} origin/${{ steps.map.outputs.main }}
             git reset --hard origin/${{ steps.map.outputs.main }}
             git clean -fdx
 
