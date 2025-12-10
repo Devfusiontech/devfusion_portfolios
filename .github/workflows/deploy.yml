@@ -1,4 +1,4 @@
-name: Auto Merge + Deploy (Force Overwrite)
+name: Deploy Staging → Portfolio
 
 on:
   push:
@@ -13,106 +13,30 @@ jobs:
       contents: write
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
       - name: Set branch / folder / container mapping
         id: map
         run: |
           case "${GITHUB_REF_NAME}" in
             abdullah_staging)
-              echo "main=abdullah_portfolio" >> $GITHUB_OUTPUT
               echo "folder=abdullah_site"     >> $GITHUB_OUTPUT
               echo "container=abdullah-site"  >> $GITHUB_OUTPUT
+              echo "staging_branch=abdullah_staging" >> $GITHUB_OUTPUT
+              echo "portfolio_branch=abdullah_portfolio" >> $GITHUB_OUTPUT
               ;;
             imran_staging)
-              echo "main=imran_portfolio"     >> $GITHUB_OUTPUT
               echo "folder=imran_site"        >> $GITHUB_OUTPUT
               echo "container=imran-site"     >> $GITHUB_OUTPUT
+              echo "staging_branch=imran_staging" >> $GITHUB_OUTPUT
+              echo "portfolio_branch=imran_portfolio" >> $GITHUB_OUTPUT
               ;;
-            kmisbah_staging)
-              echo "main=kmisbah_portfolio"    >> $GITHUB_OUTPUT
-              echo "folder=kmisbah"           >> $GITHUB_OUTPUT
-              echo "container=kmisbah-site"   >> $GITHUB_OUTPUT
-              ;;
-            mahnoor_staging)
-              echo "main=mahnoor_portfolio"   >> $GITHUB_OUTPUT
-              echo "folder=mahnoor_site"      >> $GITHUB_OUTPUT
-              echo "container=mahnoor-site"   >> $GITHUB_OUTPUT
-              ;;
-            maria_staging)
-              echo "main=maria_portfolio"     >> $GITHUB_OUTPUT
-              echo "folder=maria_site"        >> $GITHUB_OUTPUT
-              echo "container=maria-site"     >> $GITHUB_OUTPUT
-              ;;
-            misbah_staging)
-              echo "main=misbah_portfolio"    >> $GITHUB_OUTPUT
-              echo "folder=misbah_site"       >> $GITHUB_OUTPUT
-              echo "container=misbah-site"    >> $GITHUB_OUTPUT
-              ;;
-            nouman_staging)
-              echo "main=nouman_portfolio"    >> $GITHUB_OUTPUT
-              echo "folder=nouman_site"       >> $GITHUB_OUTPUT
-              echo "container=nouman-site"    >> $GITHUB_OUTPUT
-              ;;
-            rehan_staging)
-              echo "main=rehan_portfolio"     >> $GITHUB_OUTPUT
-              echo "folder=rehan_site"        >> $GITHUB_OUTPUT
-              echo "container=rehan-site"     >> $GITHUB_OUTPUT
-              ;;
-            sidra_staging)
-              echo "main=sidra_portfolio"     >> $GITHUB_OUTPUT
-              echo "folder=sidra_site"        >> $GITHUB_OUTPUT
-              echo "container=sidra-site"     >> $GITHUB_OUTPUT
-              ;;
-            salma_staging)
-              echo "main=salma_portfolio"     >> $GITHUB_OUTPUT
-              echo "folder=salma_site"        >> $GITHUB_OUTPUT
-              echo "container=salma-site"     >> $GITHUB_OUTPUT
-              ;;
-            talal_staging)
-              echo "main=talal_portfolio"     >> $GITHUB_OUTPUT
-              echo "folder=talal_site"        >> $GITHUB_OUTPUT
-              echo "container=talal-site"     >> $GITHUB_OUTPUT
-              ;;
-            zahra_staging)
-              echo "main=zahra_portfolio"     >> $GITHUB_OUTPUT
-              echo "folder=zahra_site"        >> $GITHUB_OUTPUT
-              echo "container=zahra-site"     >> $GITHUB_OUTPUT
-              ;;
+            # Add other employees similarly...
             *)
               echo "Unknown branch: ${GITHUB_REF_NAME}"
               exit 1
               ;;
           esac
 
-      - name: Merge staging into portfolio and push
-        env:
-          SSH_KEY: ${{ secrets.devfusion }}
-        run: |
-          mkdir -p ~/.ssh
-          echo "$SSH_KEY" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan github.com >> ~/.ssh/known_hosts 2>/dev/null
-
-          git remote set-url origin git@github.com:${{ github.repository }}.git
-          git fetch origin
-
-          # Configure git committer for CI
-          git config --global user.email "actions@github.com"
-          git config --global user.name "GitHub Actions"
-
-          # Checkout portfolio branch
-          git checkout ${{ steps.map.outputs.main }} || git checkout -b ${{ steps.map.outputs.main }} origin/${{ steps.map.outputs.main }}
-          git pull origin ${{ steps.map.outputs.main }}
-
-          # Merge staging branch into portfolio branch automatically favoring staging changes
-          git merge -X theirs origin/${{ github.ref_name }} --no-ff -m "Merge ${{ github.ref_name }} into ${{ steps.map.outputs.main }}"
-          git push origin ${{ steps.map.outputs.main }}
-
-      - name: Deploy → Pull + Restart containers
+      - name: Deploy → Merge & Restart on Server
         env:
           SSH_KEY: ${{ secrets.devfusion }}
           SERVER_IP: 144.91.124.246
@@ -122,18 +46,29 @@ jobs:
           chmod 600 ~/.ssh/temp_key
           ssh-keyscan -H $SERVER_IP >> ~/.ssh/known_hosts 2>/dev/null
 
-          ssh -i ~/.ssh/temp_key -o IdentitiesOnly=yes root@$SERVER_IP << 'EOF'
+          ssh -i ~/.ssh/temp_key -o IdentitiesOnly=yes root@$SERVER_IP << EOF
+            set -e
+
             cd /var/www/html/${{ steps.map.outputs.folder }} || exit 1
-            git fetch --all
-            git checkout ${{ steps.map.outputs.main }} || git checkout -b ${{ steps.map.outputs.main }} origin/${{ steps.map.outputs.main }}
-            git reset --hard origin/${{ steps.map.outputs.main }}
+
+            # Fetch latest changes
+            git fetch origin
+
+            # Checkout portfolio branch
+            git checkout ${{ steps.map.outputs.portfolio_branch }} || git checkout -b ${{ steps.map.outputs.portfolio_branch }} origin/${{ steps.map.outputs.portfolio_branch }}
+
+            # Merge staging branch into portfolio, preferring staging changes
+            git merge -X theirs origin/${{ steps.map.outputs.staging_branch }} -m "Merge staging into portfolio"
+
+            # Reset and clean to ensure working folder matches branch
+            git reset --hard HEAD
             git clean -fdx
 
-            echo "Restarting ${{ steps.map.outputs.container }}"
+            echo "Restarting container ${{ steps.map.outputs.container }}"
             docker restart ${{ steps.map.outputs.container }} || true
 
             echo "Restarting ReverseProxy..."
             docker restart ReverseProxy || true
 
-            echo "Deployed ${{ steps.map.outputs.folder }} – Done!"
-          EOF
+            echo "Deployment complete for ${{ steps.map.outputs.folder }}"
+EOF
