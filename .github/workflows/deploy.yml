@@ -108,8 +108,8 @@ jobs:
           git checkout ${{ steps.map.outputs.main }} || git checkout -b ${{ steps.map.outputs.main }} origin/${{ steps.map.outputs.main }}
           git pull origin ${{ steps.map.outputs.main }}
 
-          # Merge staging branch into portfolio branch
-          git merge origin/${{ github.ref_name }} --no-ff -m "Merge ${{ github.ref_name }} into ${{ steps.map.outputs.main }}"
+          # Merge staging branch into portfolio branch automatically favoring staging changes
+          git merge -X theirs origin/${{ github.ref_name }} --no-ff -m "Merge ${{ github.ref_name }} into ${{ steps.map.outputs.main }}"
           git push origin ${{ steps.map.outputs.main }}
 
       - name: Deploy → Pull + Restart containers
