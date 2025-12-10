@@ -49,7 +49,7 @@ jobs:
 
       - name: Deploy → Pull code + Restart site + Restart ReverseProxy
         env:
-          SSH_KEY: ${{ secrets.devfusion }}
+          SSH_KEY: ${{ secrets.DEVFUSION }}
           SERVER_IP: 144.91.124.246
         run: |
           mkdir -p ~/.ssh
